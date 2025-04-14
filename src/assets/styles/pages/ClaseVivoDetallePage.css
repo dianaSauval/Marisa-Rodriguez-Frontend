@@ -1,0 +1,183 @@
+.clase-detalle-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  box-shadow: var(--sombra-suave);
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+}
+
+.detalle-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.detalle-header h1 {
+  font-size: 3rem;
+  font-family: var(--fuente-titulo);
+  font-weight: 100;
+  color: var(--color-acento);
+  flex: 1;
+}
+
+.detalle-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.descripcion{
+  max-width: 600px;
+}
+
+.detalle-info div{
+  width: 100%;
+}
+
+.badge-vivo {
+  background-color: var(--color-acento);
+  color: var(--color-fondo);
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.descripcion {
+  margin-top: 20px;
+  margin-bottom: 2rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.6;
+}
+
+.detalle-fecha,
+.detalle-cupos {
+  font-size: 1rem;
+  color: var(--color-texto);
+  margin-bottom: 0.5rem;
+}
+
+.detalle-beneficios {
+  width: 100%;
+  max-width: 600px;
+}
+
+.detalle-beneficios h3 {
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: 100;
+  color: var(--color-secundario);
+}
+
+.detalle-beneficios ul {
+  list-style: none;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  color: var(--color-texto-secundario);
+}
+
+.curso-imagen img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.boton-inscripcion {
+  margin-top: 2rem;
+  background: var(--color-acento);
+  color: var(--color-fondo);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease, transform 0.5s ease 0.1s,
+    box-shadow 0.6s ease;
+}
+
+.boton-inscripcion:hover {
+  transform: scale(1.05);
+  background: var(--color-secundario);
+  color: var(--color-texto);
+}
+
+.volver-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--color-secundario);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.volver-link:hover {
+  text-decoration: underline;
+}
+
+.buttonsClaseDetalle {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* 📱 Responsive para pantallas medianas (tablets) */
+@media (max-width: 768px) {
+  .detalle-header h1 {
+    font-size: 2.4rem;
+  }
+
+  .detalle-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detalle-beneficios h3 {
+    font-size: 1.6rem;
+  }
+
+  .curso-imagen img {
+    max-width: 70%;
+  }
+
+  .boton-inscripcion {
+    width: 100%;
+  }
+
+  .buttonsClaseDetalle {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* 📱 Responsive para celulares */
+@media (max-width: 480px) {
+  .detalle-header h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .detalle-beneficios ul {
+    padding-left: 1rem;
+  }
+
+  .boton-inscripcion {
+    font-size: 0.95rem;
+  }
+
+  .volver-link {
+    font-size: 0.85rem;
+    text-align: center;
+    width: 100%;
+  }
+}

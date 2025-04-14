@@ -1,0 +1,145 @@
+.success-message-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1rem;
+    min-height: 70vh;
+    background: var(--borde-radiante);
+  }
+  
+  .success-message-card {
+    position: relative;
+    background: var(--color-claro);
+    border: 2px solid transparent;
+    border-radius: 2.5rem;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    box-shadow: var(--sombra-suave);
+    max-width: 650px;
+    width: 100%;
+    font-family: var(--fuente-principal);
+    animation: fadeIn 0.6s ease-in-out;
+    transition: var(--transicion-suave);
+  }
+  
+  /* ✨ Borde brillante animado */
+  .success-message-card::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 2.5rem;
+    background: linear-gradient(45deg, var(--color-acento), var(--color-secundario), var(--color-primario));
+    z-index: -1;
+    animation: glowBorder 4s ease-in-out infinite;
+  }
+  
+  /* 💫 Ícono animado */
+  .success-message-icon {
+    font-size: 4rem;
+    color: var(--color-acento);
+    margin-bottom: 1.5rem;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  .success-message-card h1 {
+    font-family: var(--fuente-titulo);
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: var(--color-primario);
+  }
+  
+  .success-message-card p {
+    font-size: 1.25rem;
+    color: var(--color-fondo);
+    margin-bottom: 1rem;
+  }
+  
+  .success-message-card a,
+  .success-message-card button {
+    display: inline-block;
+    margin-top: 1.8rem;
+    background-color: var(--color-secundario);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transicion-suave);
+  }
+  
+  .success-message-card a:hover,
+  .success-message-card button:hover {
+    background-color: var(--color-primario);
+    color: var(--color-texto);
+  }
+  
+  /* ✨ Animaciones mágicas */
+  
+  @keyframes glowBorder {
+    0% {
+      filter: drop-shadow(0 0 6px var(--color-acento));
+    }
+    50% {
+      filter: drop-shadow(0 0 15px var(--color-secundario));
+    }
+    100% {
+      filter: drop-shadow(0 0 6px var(--color-acento));
+    }
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      transform: scale(1);
+      text-shadow: 0 0 6px var(--color-acento);
+    }
+    50% {
+      transform: scale(1.15);
+      text-shadow: 0 0 14px var(--color-secundario);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* 📱 Responsive */
+  @media (max-width: 600px) {
+    .success-message-card {
+      padding: 2rem 1.5rem;
+      border-radius: 2rem;
+    }
+  
+    .success-message-icon {
+      font-size: 3rem;
+    }
+  
+    .success-message-card h1 {
+      font-size: 2rem;
+    }
+  
+    .success-message-card p {
+      font-size: 1.1rem;
+    }
+  
+    .success-message-card a,
+    .success-message-card button {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+    }
+  }
+  

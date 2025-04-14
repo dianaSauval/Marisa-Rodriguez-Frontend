@@ -1,0 +1,128 @@
+.cursos-container {
+  width: 100%;
+    padding: 2rem;
+    background: transparent;
+    color: var(--color-texto);
+    min-height: 100vh;
+  }
+  
+  /* 💬 Encabezado y explicación */
+  .explicacion-cursos {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .explicacion-cursos h1 {
+    font-family: var(--fuente-titulo);
+    font-size: 3rem;
+    font-weight: 100;
+    color: var(--color-acento);
+    margin-bottom: 1rem;
+  }
+  
+  .explicacion-cursos p {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 1rem;
+  }
+  
+  .explicacion-cursos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  
+  .explicacion-cursos li {
+    font-size: 1rem;
+    color: var(--color-texto);
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  /* 🎛️ Filtros de categorías */
+  .filtros-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .filtro-boton {
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    border: 2px dashed var(--color-acento);
+    background: transparent;
+    color: var(--color-acento);
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+    cursor: pointer;
+    transition: background-color 0.5s ease, transform 0.5s ease 0.1s, box-shadow 0.6s ease;
+  }
+  
+  .filtro-boton:hover,
+  .filtro-boton.activo {
+    background: var(--color-acento);
+    color: var(--color-fondo);
+    box-shadow: 0 0 10px rgba(246, 193, 109, 0.3);
+  }
+  
+  /* 🧿 Cards */
+  .grid-cursos {
+    display: grid;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  /* ✨ Modalidad en vivo */
+
+  
+  .badge-modalidad.vivo {
+    background-color: var(--color-acento);
+    color: var(--color-fondo);
+    font-weight: bold;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    display: inline-block;
+  }
+  
+  .fecha-clase, .cupos-clase {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  
+ 
+  
+  
+  /* ✨ Animaciones */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .mensaje-vacio {
+    text-align: center;
+    color: var(--color-texto-secundario);
+    font-style: italic;
+    font-size: 1rem;
+  }
+  

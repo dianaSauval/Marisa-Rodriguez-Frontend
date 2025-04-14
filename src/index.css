@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+
+/* 🌍 Variables globales */
+:root {
+  --color-primario: #9e3ea6;
+  --color-secundario: #e67cbf;
+  --color-acento: #f6c16d;
+  --color-fondo: #2e1a3d;
+  --color-claro: #f3e8f7;
+  --color-texto: #f8f4f9;
+  --color-texto-secundario: #e3cde6;
+
+  --sombra-suave: 0 4px 15px rgba(255, 179, 230, 0.3);
+  --borde-mistico: 2px dashed var(--color-acento);
+  --borde-radiante: radial-gradient(circle, #9e4b9a 0%, #2e1437 100%);
+  --transicion-suave: all 0.5s ease-in-out;
+
+  --fuente-titulo: "Great Vibes", cursive;
+  --fuente-principal: "Poppins", sans-serif;
+}
+
+/* 🧘 Reset y base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}

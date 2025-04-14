@@ -1,0 +1,166 @@
+.curso-detalle-container {
+  width: 100%;
+  color: var(--color-texto);
+  padding: 2rem;
+  margin: 0 auto;
+  font-family: var(--fuente-principal);
+}
+
+.curso-detalle-portada {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 4rem;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.curso-detalle-portada div {
+  flex: 2;
+}
+
+.curso-imagen img {
+  width: 100%; /* 🔄 Se adapta al ancho disponible */
+  max-width: 400px; /* 📏 Nunca supera este tamaño en desktop */
+  height: auto; /* 🖼️ Mantiene proporción */
+  border-radius: 1rem; /* ✨ Bordes suaves y místicos */
+  box-shadow: var(--sombra-suave); /* 🌒 Le da profundidad */
+  object-fit: cover; /* 🧼 Si alguna imagen es más cuadrada, se ajusta sin deformarse */
+  display: block; /* Elimina espacios fantasmas en algunos navegadores */
+  margin: 0 auto;
+}
+
+.curso-info h1 {
+  font-family: var(--fuente-titulo);
+  color: var(--color-acento);
+  margin-top: 1.5rem;
+  font-size: 4rem;
+  font-weight: 100;
+}
+
+.curso-descripcion {
+  font-size: 1.2rem;
+  color: var(--color-texto-secundario);
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.curso-detalles {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.curso-detalles li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.curso-contenido,
+.curso-beneficios,
+.curso-testimonios,
+.cursos-relacionados {
+  margin-top: 2rem;
+}
+
+.curso-contenido h2,
+.curso-beneficios h2,
+.curso-testimonios h2,
+.cursos-relacionados h2 {
+  color: var(--color-secundario);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 100;
+}
+
+.curso-contenido ul,
+.curso-beneficios ul,
+.cursos-relacionados ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.curso-contenido li,
+.curso-beneficios li,
+.cursos-relacionados li {
+  margin-bottom: 0.5rem;
+  color: var(--color-texto);
+}
+
+.curso-acciones {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.curso-precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-acento);
+}
+
+.boton-agregar-carrito {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.5s ease, transform 0.5s ease 0.1s,
+    box-shadow 0.6s ease;
+}
+
+.boton-agregar-carrito:hover {
+  background: var(--color-secundario);
+  color: var(--color-texto);
+}
+
+.boton-consultar-whatsapp {
+  background: transparent;
+  border: 2px dashed var(--color-secundario);
+  color: var(--color-secundario);
+  padding: 0.7rem 1.2rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.5s ease, transform 0.5s ease 0.1s,
+    box-shadow 0.6s ease;
+}
+
+.boton-consultar-whatsapp:hover {
+  background: var(--color-secundario);
+  color: var(--color-fondo);
+}
+
+blockquote {
+  font-style: italic;
+  color: var(--color-texto-secundario);
+  border-left: 4px solid var(--color-acento);
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-acento);
+}
+
+
+@media (max-width: 768px) {
+  .curso-detalle-portada {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .curso-detalle-portada div,
+  .curso-imagen {
+    flex: 1 1 100%;
+  }
+}

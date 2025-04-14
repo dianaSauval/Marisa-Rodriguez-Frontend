@@ -1,0 +1,369 @@
+.panel-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+  }
+  
+
+  
+  .bloque {
+    margin-bottom: 3rem;
+  }
+  
+  .bloque-titulo {
+    font-size: 1.4rem;
+    color: var(--color-acento);
+    margin-bottom: 1.2rem;
+  }
+  
+  .panel-admin {
+    padding: 2rem;
+  }
+  
+  .titulo-panel {
+    font-size: 3rem;
+    font-weight: 100;
+    color: var(--color-acento);
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Botoncitos de filtros */
+  .filtros-admin {
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+  }
+  
+  .filtro-boton {
+    background: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.5s ease, transform 0.5s ease 0.1s, box-shadow 0.6s ease;
+  }
+  
+  .filtro-boton:hover {
+    background: #d156aa;
+  }
+  
+  .filtro-boton.activo {
+    background: var(--color-acento);
+    color: var(--color-fondo);
+  }
+  
+  .lista-cursos-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .item-admin {
+    background: var(--borde-radiante);
+    border-radius: 1.5rem;
+    padding: 1.2rem;
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .item-admin h3 {
+    font-size: 2rem;
+    font-weight: 100;
+    margin-bottom: 0.3rem;
+    color: var(--color-acento);
+  }
+  
+  .item-admin p {
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto-secundario);
+    margin: 0.2rem 0;
+  }
+  
+  .mensaje-vacio {
+    color: var(--color-texto-secundario);
+    font-style: italic;
+  }
+  
+  
+  .info h3 {
+    color: var(--color-secundario);
+    margin-bottom: 0.3rem;
+  }
+  
+  .info p {
+    color: var(--color-texto-secundario);
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+  }
+  
+  .fecha {
+    font-style: italic;
+    color: var(--color-texto);
+  }
+  
+  .estado {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  .visible {
+    color: #4ecb88;
+  }
+  
+  .oculto {
+    color: #f36e6e;
+  }
+  
+  .acciones {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 0.8rem;
+  }
+  
+  .editar,
+  .eliminar {
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .editar {
+    background: var(--color-acento);
+    color: var(--color-fondo);
+  }
+  
+  .eliminar {
+    background: #f36e6e;
+    color: white;
+  }
+  
+  .editar:hover,
+  .eliminar:hover {
+    transform: scale(1.05);
+  }
+  
+  .acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+  
+  .boton-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.3rem;
+    border-radius: 1000px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--color-claro);
+    color: var(--color-fondo);
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .boton-admin:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 12px var(--color-acento);
+    filter: brightness(1.05);
+  }
+  
+  /* Estilo específico según acción */
+  .boton-admin.editar {
+    background: var(--color-acento);
+    color: var(--color-fondo);
+  }
+  
+  .boton-admin.eliminar {
+    background: #e65454;
+    color: white;
+  }
+  
+  .boton-admin.visibilidad {
+    background: var(--color-secundario);
+    color: white;
+  }
+
+  .boton-admin.visibilidad.ocultar {
+    background: #9e3ea6; /* violeta profundo */
+    color: white;
+  }
+  
+  .boton-admin.visibilidad.mostrar {
+    background: var(--color-acento); /* dorado */
+    color: var(--color-fondo);
+  }
+  
+  
+  /* Efecto de clic (activo) */
+  .boton-admin:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 6px var(--color-acento);
+  }
+  
+  
+  /* Efecto de ripple suave (opcional) */
+  .boton-admin::after {
+    content: \"\";
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .boton-admin svg {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .formulario-wrapper {
+    animation: fadeInUp 0.5s ease;
+  }
+
+  /* 📱 Tablet */
+@media (max-width: 768px) {
+    .panel-container {
+      padding: 2rem 1.2rem;
+    }
+  
+    .titulo-panel {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+  
+    .bloque-titulo {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  
+    .filtros-admin {
+      gap: 0.5rem;
+      font-size: 1.2rem;
+      flex-direction: row;
+      justify-content: center;
+    }
+  
+    .filtro-boton {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+  
+    .item-admin h3 {
+      font-size: 1.4rem;
+    }
+  
+    .item-admin p {
+      font-size: 0.95rem;
+    }
+  
+    .acciones {
+      justify-content: flex-start;
+    }
+  }
+  
+  /* 📱 Mobile */
+  @media (max-width: 480px) {
+    .panel-container {
+      padding: 1.5rem 1rem;
+    }
+  
+    .titulo-panel {
+      font-size: 2rem;
+    }
+  
+    .bloque-titulo {
+      font-size: 1.1rem;
+    }
+  
+    .filtros-admin {
+      flex-direction: column;
+      align-items: center;
+      font-size: 1rem;
+    }
+  
+    .filtro-boton {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .item-admin {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+      gap: 1rem;
+    }
+  
+    .item-admin h3 {
+      font-size: 1.8rem;
+    }
+  
+    .item-admin p {
+      font-size: 0.9rem;
+    }
+  
+    .acciones {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      align-items: stretch;
+    }
+  
+    .boton-admin {
+      justify-content: center;
+    }
+  
+    .boton-admin svg {
+      font-size: 1.3rem;
+    }
+  }
+  
+      

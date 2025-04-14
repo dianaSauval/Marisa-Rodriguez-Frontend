@@ -1,0 +1,70 @@
+[
+    {
+      "front": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743520308/Marisa%20Rodriguez/ChatGPT_Image_1_abr_2025_12_11_06_i9ci3r.png",
+        "title": "",
+        "description": ""
+      },
+      "back": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743717077/Marisa%20Rodriguez/tarot-fondo-_v8owdy.png",
+        "title": "Tarot",
+        "description": "Explorá el Tarot como herramienta de autoconocimiento, sanación y guía espiritual.",
+        "action": {
+          "type": "external",
+          "route": "/tarot",
+          "label": "start with header"
+        }
+      }
+    },
+    {
+      "front": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743711376/Marisa%20Rodriguez/reiki_jyjnru.png",
+        "title": "",
+        "description": ""
+      },
+      "back": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743719690/Marisa%20Rodriguez/reiki-fondo_ihzmrd.png",
+        "title": "Reiki",
+        "description": "Sanación energética a través de la canalización universal.",
+        "action": {
+          "type": "external",
+          "route": "/reiki",
+          "label": "start with header"
+        }
+      }
+    },
+    {
+      "front": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743711805/Marisa%20Rodriguez/terapias_de_luz_y_energia_m4vqvz.png",
+        "title": "",
+        "description": ""
+      },
+      "back": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743720215/Marisa%20Rodriguez/luz-energia-fondo_wgbjy0.png",
+        "title": "Terapias de Luz y Energía",
+        "description": "Accede a información profunda, libera bloqueos y sintoniza con tu verdadera frecuencia.",
+        "action": {
+          "type": "external",
+          "route": "/terapias-de-luz",
+          "label": "start with header"
+        }
+      }
+    },
+    {
+      "front": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743714242/Marisa%20Rodriguez/terapias_integrativas_mrokod.png",
+        "title": "",
+        "description": ""
+      },
+      "back": {
+        "image": "https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743720608/Marisa%20Rodriguez/terapias-integrativas-fondo_wtxfot.png",
+        "title": "Terapias Integrativas",
+        "description": "Conectá con tu interior a través de flores, vidas pasadas y la sabiduría de las runas.",
+        "action": {
+          "type": "external",
+          "route": "/terapias-integrativas",
+          "label": "start with header"
+        }
+      }
+    }
+  ]

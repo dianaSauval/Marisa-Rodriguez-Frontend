@@ -1,0 +1,71 @@
+.empty-state-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+    background: var(--borde-radiante);
+    box-shadow: var(--sombra-suave);
+    text-align: center;
+    border: var(--borde-mistico);
+    transition: var(--transicion-suave);
+    font-family: var(--fuente-principal);
+  }
+  
+  .empty-state-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(246, 193, 109, 0.3);
+  }
+  
+  .empty-icon {
+    font-size: 3rem;
+    color: var(--color-acento);
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .empty-title {
+    font-size: 2.6rem;
+    color: var(--color-acento);
+    margin-bottom: 0.5rem;
+    font-weight:100;
+    font-family: var(--fuente-titulo);
+  }
+  
+  .empty-subtitle {
+    font-size: 1.2rem;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto-secundario);
+    max-width: 90%;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* Responsive ajustes */
+@media (max-width: 600px) {
+    .empty-state-container {
+      padding: 2rem 1.5rem;
+      border-radius: 1.5rem;
+    }
+  
+    .empty-icon {
+      font-size: 2.5rem;
+    }
+  
+    .empty-title {
+      font-size: 1.5rem;
+    }
+  
+    .empty-subtitle {
+      font-size: 0.95rem;
+    }
+  }
+  
+  
+  /* 🌟 Efecto flotante para el ícono */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+  }
+  

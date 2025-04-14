@@ -1,0 +1,220 @@
+.header {
+    width: 100%;
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #2e1a3d, #9e3ea6, #e67cbf);
+    box-shadow: var(--sombra-suave);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .header__lo.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--color-fondo);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .header__logo img {
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: var(--sombra-suave);
+    border: 2px solid var(--color-acento);
+    transition: transform 0.3s ease;
+  }
+  
+  .header__logo img:hover {
+    transform: scale(1.05);
+  }
+  
+  .header__nav {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .header__nav a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+    letter-spacing: 0.5px;
+    transition: var(--transicion-suave);
+    position: relative;
+    font-size: 1rem;
+  }
+  
+  .header__nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--color-acento);
+    transition: width 0.4s ease;
+  }
+  
+  .header__nav a:hover::after {
+    width: 100%;
+  }
+  
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .carrito-btn {
+    background: none;
+    border: none;
+    color: var(--color-acento);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .carrito-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  .btn-sesion {
+    background-color: var(--color-acento);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    color: var(--color-fondo);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+    font-size: 0.95rem;
+    box-shadow: 0 0 10px rgba(246, 193, 109, 0.4);
+  }
+  
+  .btn-sesion.cerrar {
+    background-color: transparent;
+    color: var(--color-texto-secundario);
+    border: 1px solid var(--color-texto-secundario);
+    box-shadow: none;
+  }
+  
+  .btn-sesion:hover {
+    box-shadow: var(--sombra-suave);
+    transform: translateY(-2px);
+  }
+  
+  /* Ícono hamburguesa */
+  .header__menu-icon {
+    display: none;
+    color: var(--color-acento);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+  
+  /* Menú Mobile */
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--borde-radiante);
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    box-shadow: var(--sombra-suave);
+    z-index: 999;
+    backdrop-filter: blur(4px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .mobile-menu a {
+    color: var(--color-texto);
+    font-size: 1.1rem;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .mobile-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+
+  .carrito-link {
+    position: relative;
+    display: inline-block;
+    margin-left: 1rem;
+    color: var(--color-acento);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .carrito-link:hover {
+    transform: scale(1.2); /* 💫 Agranda suave sin cambiar color */
+  }
+  
+  .carrito-icono {
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .carrito-icono.animado {
+    animation: carritoPulse 0.6s ease;
+  }
+  
+  @keyframes carritoPulse {
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(1.4) rotate(-8deg);
+    }
+    60% {
+      transform: scale(0.9) rotate(6deg);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .carrito-contador {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: var(--color-acento);
+    color: var(--color-fondo);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    border: 0.5px solid var(--color-fondo); /* ✨ Borde místico para que se destaque */
+    box-shadow: 0 0 5px rgba(246, 193, 109, 0.5);
+  }
+  
+  
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header__nav {
+      display: none;
+    }
+  
+    .header__menu-icon {
+      display: block;
+    }
+  
+    .header__actions {
+      display: none;
+    }
+  }
+  

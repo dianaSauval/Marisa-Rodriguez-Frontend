@@ -1,0 +1,227 @@
+.cursos-container {
+  width: 100%;
+  padding: 2rem;
+  color: var(--color-texto);
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.encabezado-cursos {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.encabezado-cursos h1 {
+  font-family: var(--fuente-titulo);
+  font-size: 2.8rem;
+  font-weight: 100;
+  color: var(--color-acento);
+}
+
+.encabezado-cursos p {
+  font-family: var(--fuente-principal);
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.grid-cursos {
+  display: grid;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.subtitulo {
+  font-family: var(--fuente-principal);
+  color: var(--color-secundario);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.curso-card {
+  position: relative;
+  overflow: hidden;
+  color: var(--color-texto);
+  border: var(--borde-mistico);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--sombra-suave);
+  transition: var(--transicion-suave);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.curso-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2; /* 💫 Nivel de transparencia de la imagen */
+  z-index: 0;
+}
+
+/* 🌒 Capa con velo violeta */
+.curso-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(46, 26, 61, 0.3); /* tono violeta oscuro translúcido */
+  z-index: 1;
+}
+
+/* 📜 Contenido por encima de ambas capas */
+.curso-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.curso-card h3 {
+  color: var(--color-texto);
+  font-family: var(--fuente-principal);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.curso-card p {
+  color: var(--color-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.badge-propio {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 1rem;
+  margin-left: 0.4rem;
+}
+
+.boton-mistico {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+  font-family: var(--fuente-principal);
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 2rem;
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  transition: background-color 0.5s ease, transform 0.5s ease 0.1s,
+    box-shadow 0.6s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+.boton-mistico:hover {
+  background: var(--color-secundario);
+  color: var(--color-texto);
+  box-shadow: 0 6px 20px rgba(230, 124, 191, 0.4);
+  transform: scale(1.05);
+}
+
+.badge-modalidad {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  text-align: center;
+  width: fit-content;
+  margin-top: 1rem;
+  margin-left: auto; /* 💫 Esto lo empuja a la derecha */
+  display: block; /* Asegura que respete el margin */
+}
+
+.badge-modalidad.vivo {
+  background: var(--color-secundario);
+  color: var(--color-fondo);
+  box-shadow: 0 0 6px rgba(230, 124, 191, 0.4);
+}
+
+.badge-modalidad.grabado {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+  box-shadow: 0 0 6px rgba(246, 193, 109, 0.4);
+}
+
+
+/**    TAROT    **/
+
+/* 🎴 Capa con la imagen de fondo */
+.curso-card.tarot::before {
+  background-image: url("https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743717077/Marisa%20Rodriguez/tarot-fondo-_v8owdy.png");
+}
+
+/**    REIKI    **/
+
+.curso-card.reiki::before {
+  background-image: url("https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743719690/Marisa%20Rodriguez/reiki-fondo_ihzmrd.png");
+}
+
+.curso-card.canalizado {
+  border: 2px solid var(--color-acento);
+  box-shadow: 0 0 12px rgba(246, 193, 109, 0.5),
+    0 0 24px rgba(158, 62, 166, 0.3);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  position: relative;
+  z-index: 1;
+}
+
+.badge-propio {
+  background: linear-gradient(
+    135deg,
+    var(--color-acento),
+    var(--color-secundario)
+  );
+  color: var(--color-fondo);
+  padding: 0.4rem 1rem;
+  font-size: 0.58rem;
+  font-weight:900;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 8px rgba(246, 193, 109, 0.4);
+  margin: 0 auto 0.8rem auto; /* centrado + espacio abajo */
+  display: inline-block;
+  text-align: center;
+}
+
+/**    Terapias de Luz y Energía    **/
+
+.curso-card.luzYEnergia::before { 
+  background-image: url("https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743720215/Marisa%20Rodriguez/luz-energia-fondo_wgbjy0.png");
+}
+
+
+/**    Terapias integrativas    **/
+
+.curso-card.terapiasIntegrativas::before {
+  background-image: url("https://res.cloudinary.com/dkdhdy9e5/image/upload/v1743720608/Marisa%20Rodriguez/terapias-integrativas-fondo_wtxfot.png");
+}

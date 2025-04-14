@@ -1,0 +1,232 @@
+.mis-cursos-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+}
+
+.titulo-principal {
+  font-family: var(--fuente-titulo);
+  font-size: 3rem;
+  font-weight: 100;
+  text-align: center;
+  color: var(--color-acento);
+  margin-bottom: 3rem;
+}
+
+.seccion-cursos,
+.seccion-vivo {
+  margin-bottom: 3rem;
+}
+
+.subtitulo-seccion {
+  font-size: 2.6rem;
+  font-weight: 100;
+  color: var(--color-acento);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Cursos grabados */
+.grid-cursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.curso-card {
+  background: var(--borde-radiante);
+  border: var(--borde-mistico);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: var(--sombra-suave);
+  text-align: center;
+}
+
+.curso-card h3 {
+  color: var(--color-secundario);
+  margin-bottom: 0.5rem;
+}
+
+.curso-card p {
+  color: var(--color-texto-secundario);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Clases en vivo */
+.lista-clases {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Cards de clases vivas (próximas) */
+.item-clase {
+  background: linear-gradient(
+    135deg,
+    var(--color-primario),
+    var(--color-secundario)
+  );
+  color: var(--color-texto);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: var(--sombra-suave);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.3s ease;
+  border: 2px dashed var(--color-acento);
+}
+
+.item-clase:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(246, 193, 109, 0.3);
+}
+
+.titulo-clase {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--color-acento);
+}
+
+.fecha-clase {
+  font-size: 1rem;
+  color: var(--color-claro);
+}
+
+.link-whatsapp {
+  align-self: flex-start;
+  background: #4ecb88; /* Verde más suave y armónico */
+  color: white;
+  padding: 0.4rem 0.9rem;
+  border-radius: 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.link-whatsapp:hover {
+  background: #3ab97a; /* Más oscuro al pasar el mouse */
+  transform: scale(1.03);
+}
+
+.mensaje-vacio {
+  text-align: center;
+  color: var(--color-texto-secundario);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.item-pasado {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+}
+
+.estado-pasado {
+  font-size: 0.85rem;
+  color: var(--color-texto-secundario);
+  font-style: italic;
+}
+
+/* 📱 Tablet */
+@media (max-width: 768px) {
+  .mis-cursos-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .titulo-principal {
+    font-size: 2.3rem;
+  }
+
+  .subtitulo-seccion {
+    font-size: 2rem;
+  }
+
+  .curso-card {
+    padding: 1.2rem;
+  }
+
+  .curso-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .curso-card p {
+    font-size: 0.9rem;
+  }
+
+  .item-clase {
+    padding: 1.2rem;
+  }
+
+  .titulo-clase {
+    font-size: 1.1rem;
+  }
+
+  .fecha-clase {
+    font-size: 0.95rem;
+  }
+
+  .link-whatsapp {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.8rem;
+  }
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+  .mis-cursos-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .titulo-principal {
+    font-size: 2rem;
+  }
+
+  .subtitulo-seccion {
+    font-size: 1.7rem;
+  }
+
+  .grid-cursos {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .curso-card h3 {
+    font-size: 1rem;
+  }
+
+  .curso-card p {
+    font-size: 0.85rem;
+  }
+
+  .item-clase {
+    padding: 1rem;
+    gap: 0.4rem;
+  }
+
+  .titulo-clase {
+    font-size: 1rem;
+  }
+
+  .fecha-clase {
+    font-size: 0.9rem;
+  }
+
+  .link-whatsapp {
+    font-size: 0.82rem;
+    padding: 0.3rem 0.7rem;
+    gap: 0.3rem;
+  }
+
+  .mensaje-vacio {
+    font-size: 0.9rem;
+  }
+}

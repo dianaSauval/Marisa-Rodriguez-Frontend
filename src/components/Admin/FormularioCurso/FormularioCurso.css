@@ -1,0 +1,233 @@
+.formulario-curso {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  background: var(--borde-radiante);
+  border-radius: 2rem;
+  box-shadow: var(--sombra-suave);
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+}
+
+.formulario-curso h2 {
+  margin-bottom: 2rem;
+  color: var(--color-acento);
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+form label {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid var(--color-secundario);
+  border-radius: 1rem;
+  background: var(--color-claro);
+  font-size: 1.1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.ayuda-campo,
+label small {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-texto-secundario);
+  margin-top: 0.3rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 2rem 0 1rem;
+  font-size: 1.1rem;
+}
+
+.botones-formulario {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.boton-guardar,
+.boton-cancelar {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.3s;
+}
+
+.boton-guardar {
+  background: var(--color-acento);
+  color: white;
+}
+
+.boton-cancelar {
+  background: #e67cbf;
+  color: white;
+}
+
+.boton-guardar:hover,
+.boton-cancelar:hover {
+  opacity: 0.85;
+}
+
+/* 🧾 Temas */
+.temas-container {
+  margin-top: 1rem;
+}
+
+/* Agregar tema */
+button.agregar-tema {
+  background: var(--color-secundario);
+  color: white;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* 📦 Agrupaciones por tipo */
+.seccion-condicional {
+  border-top: 2px dashed var(--color-secundario);
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+/* Agregar tema */
+button.agregar-tema {
+  background-color: #4caf50; /* verde lindo */
+  color: white;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition: background-color 0.3s ease;
+}
+
+button.agregar-tema:hover {
+  background-color: #43a047;
+}
+
+.tema-item {
+  display: flex;
+  align-items: center; /* 🔥 Esto centra verticalmente */
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.tema-item input {
+  flex-grow: 1;
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+
+.tema-item button {
+  background-color: #e74c3c; /* rojo fuerte */
+  color: white; /* cruz blanca */
+  border: none;
+  border-radius: 50%;
+  width: 2.1rem;
+  height: 2.1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.tema-item button:hover {
+  background-color: #c0392b; /* rojo más oscuro al hover */
+}
+
+/*IMAGEN*/
+.campo-imagen {
+  display: block;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  color: var(--color-texto);
+}
+
+.campo-imagen input[type="file"] {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+}
+
+.campo-imagen small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.4;
+}
+
+.campo-imagen a {
+  color: var(--color-acento);
+  text-decoration: underline;
+}
+
+.campo-imagen a:hover {
+  color: var(--color-secundario);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .formulario-curso {
+    padding: 1.5rem;
+  }
+
+  form label {
+    font-size: 1.1rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .botones-formulario {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .boton-guardar,
+  .boton-cancelar {
+    width: 100%;
+    font-size: 1.05rem;
+  }
+}

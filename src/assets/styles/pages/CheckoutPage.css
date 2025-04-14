@@ -1,0 +1,249 @@
+.checkout-container {
+    width: 100%;
+   padding: 2rem;
+   max-width: 1200px;
+   margin: 0 auto;
+   color: var(--color-texto);
+   min-height: 100vh;
+   font-family: var(--fuente-principal);
+ }
+ 
+ .checkout-container h1 {
+   text-align: center;
+   font-family: var(--fuente-titulo);
+   font-size: 3rem;
+   font-weight: 100;
+   color: var(--color-acento);
+   margin-bottom: 2rem;
+ }
+ 
+ .checkout-resumen {
+   background: var(--color-claro);
+   color: var(--color-fondo);
+   border: 2px dashed var(--color-acento);
+   border-radius: 1rem;
+   padding: 1.5rem;
+   margin-bottom: 2rem;
+ }
+ 
+ .checkout-resumen h2 {
+   font-size: 2rem;
+   font-weight: 100;
+   margin-bottom: 1rem;
+   color: var(--color-fondo);
+ }
+ 
+ .checkout-resumen ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+ }
+ 
+ .checkout-resumen li {
+   padding: 0.5rem 0;
+   border-bottom: 1px dashed var(--color-secundario);
+   display: flex;
+   justify-content: space-between;
+ }
+ 
+ .checkout-total {
+   font-weight: bold;
+   font-size: 1.2rem;
+   text-align: right;
+   color: var(--color-acento);
+   margin-top: 1rem;
+ }
+ 
+ .checkout-main {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2rem;
+   justify-content: space-between;
+ }
+
+ .formulario-y-tarjeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+ 
+  .checkout-form {
+    flex: 2;
+    min-width: 300px;
+  }
+ 
+ .checkout-form h3 {
+   margin-top: 2rem;
+   font-size: 3rem;
+   color: var(--color-secundario);
+   font-weight: 100;
+ }
+ 
+ .checkout-form label {
+   display: flex;
+   flex-direction: column;
+   font-weight: bold;
+   font-size: 0.95rem;
+   color: var(--color-texto-secundario);
+ }
+ 
+ .checkout-form input {
+   padding: 0.6rem;
+   border-radius: 0.5rem;
+   border: 2px dashed var(--color-secundario);
+   background: var(--color-claro);
+   color: var(--color-fondo);
+   font-family: var(--fuente-principal);
+   font-size: 0.9rem;
+   transition: var(--transicion-suave);
+ }
+ 
+ .checkout-form input:focus {
+   outline: none;
+   border-color: var(--color-acento);
+   box-shadow: 0 0 10px rgba(246, 193, 109, 0.4);
+ }
+ 
+ .boton-confirmar {
+   align-self: flex-end;
+   padding: 0.8rem 1.5rem;
+   background: var(--color-acento);
+   color: var(--color-fondo);
+   font-weight: bold;
+   border-radius: 2rem;
+   border: none;
+   cursor: pointer;
+   font-size: 1rem;
+   transition: var(--transicion-suave);
+   margin-top: 1rem;
+ }
+ 
+ .boton-confirmar:hover {
+   background: var(--color-secundario);
+   color: var(--color-fondo);
+   transform: scale(1.05);
+ }
+ 
+ .tarjeta-preview {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+ 
+ .rccs {
+   transform: scale(1.05);
+ }
+
+ .form-pago-tarjeta{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+ }
+
+ /* Estilos para inputs con error */
+.input-error {
+  border: 2px solid var(--color-secundario);
+  box-shadow: 0 0 5px var(--color-acento);
+  background-color: rgba(255, 204, 230, 0.1);
+}
+
+/* Mensajes de error */
+.error-msg {
+  color: var(--color-secundario);
+  font-size: 0.85rem;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+ 
+ @media (max-width: 768px) {
+    .formulario-y-tarjeta {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .tarjeta-preview {
+      margin-top: 1rem;
+    }
+  }
+
+  /* 📱 Mobile */
+@media (max-width: 480px) {
+  .checkout-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .checkout-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .checkout-resumen {
+    padding: 1rem;
+  }
+
+  .checkout-resumen h2 {
+    font-size: 1.6rem;
+  }
+
+  .checkout-resumen li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    font-size: 0.95rem;
+  }
+
+  .checkout-total {
+    font-size: 1.1rem;
+    text-align: left;
+  }
+
+  .checkout-main {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .checkout-form {
+    width: 100%;
+  }
+
+  .checkout-form h3 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .checkout-form label {
+    font-size: 0.9rem;
+  }
+
+  .checkout-form input {
+    font-size: 0.9rem;
+    padding: 0.55rem;
+  }
+
+  .boton-confirmar {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .tarjeta-preview {
+    width: 100%;
+    margin-top: 1.5rem;
+    justify-content: center;
+  }
+
+  .form-pago-tarjeta {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+}

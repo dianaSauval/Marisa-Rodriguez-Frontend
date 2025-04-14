@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "titulo": "Curso de Tarot Intuitivo",
+      "descripcion": "Conectá con tu sabiduría interior usando el tarot como herramienta.",
+      "precio": 5500,
+      "imagen": "https://wallpapers.com/images/high/tarot-card-2936-x-1960-background-2uhhj4j62iphkosu.webp"
+    },
+    {
+      "id": 2,
+      "titulo": "Sanación con Cristales",
+      "descripcion": "Aprendé a usar cristales para equilibrar tu energía.",
+      "precio": 4800,
+      "imagen": "https://wallpapers.com/images/high/tarot-card-2936-x-1960-background-2uhhj4j62iphkosu.webp"
+    }
+  ]
+  
