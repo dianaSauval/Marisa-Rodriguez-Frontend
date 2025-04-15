@@ -144,5 +144,5 @@
   background: var(--color-secundario);
   color: var(--color-texto);
   box-shadow: 0 6px 20px rgba(230, 124, 191, 0.4);
-  transform: scale(1.05);
+  transform: scale(1.05); 
 }
