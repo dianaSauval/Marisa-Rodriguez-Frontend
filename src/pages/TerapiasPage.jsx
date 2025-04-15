@@ -43,7 +43,7 @@ export default function TerapiasPage() {
       </section>
 
       {loading ? (
-        <LoadingSpinner texto="Cargando contenido..." />
+        <LoadingSpinner texto="Cargando contenido..." /> 
       ) : hayContenido ? (
         <section className="grid-cursos">
           {cursos.map((curso) => (
