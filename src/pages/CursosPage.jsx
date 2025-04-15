@@ -81,7 +81,7 @@ export default function CursosPage() {
             }`}
           >
             {cat.label}
-          </button>
+          </button> 
         ))}
       </section>
 
