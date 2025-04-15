@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "../assets/styles/pages/LoginPage.css";
 import useModalMensaje from "../hooks/useModalMensaje";
 import api from "../services/api";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function ResetPasswordPage() {
   const { token } = useParams();
@@ -62,7 +63,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="login-container">
       {tokenValido === null ? (
-        <p>Cargando...</p>
+        <LoadingSpinner />
       ) : tokenValido === false ? (
         <div className="login-form">
           <h2>Token inválido</h2>

@@ -4,6 +4,7 @@ import "../assets/styles/pages/CursosPage.css";
 import { obtenerCursosVisiblesPorCategoria } from "../services/CursoService";
 import { obtenerClasesVisiblesPorCategoria } from "../services/clasesVivoService";
 import EmptyState from "../components/EmptyState/EmptyState";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function TerapiasPage() {
   const [cursos, setCursos] = useState([]);
@@ -42,7 +43,7 @@ export default function TerapiasPage() {
       </section>
 
       {loading ? (
-        <p>Cargando contenido...</p>
+        <LoadingSpinner texto="Cargando contenido..." />
       ) : hayContenido ? (
         <section className="grid-cursos">
           {cursos.map((curso) => (

@@ -3,6 +3,7 @@ import "../assets/styles/pages/AllCursosPage.css";
 import { Link } from "react-router-dom";
 import { obtenerCursosVisibles } from "../services/CursoService";
 import EmptyState from "../components/EmptyState/EmptyState";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const categorias = [
   { key: "todos", label: "Todos ✨" },
@@ -92,7 +93,7 @@ export default function CursosPage() {
       {/* 🧿 Cursos */}
       <section className="grid-cursos">
       {loading ? (
-  <p>Cargando cursos...</p>
+  <LoadingSpinner texto="Cargando curso..." />
 ) : !Array.isArray(cursosFiltrados) ? (
   <p>❌ Error cargando cursos</p>
 ) : cursosFiltrados.length > 0 ? (

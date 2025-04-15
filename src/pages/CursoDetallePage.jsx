@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import "../assets/styles/pages/CursoDetallePage.css";
 import { useCart } from "../context/CartContext";
 import { obtenerCursoPorId } from "../services/CursoService";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function CursoDetallePage() {
   const { agregarAlCarrito } = useCart();
@@ -25,7 +26,7 @@ export default function CursoDetallePage() {
     fetchCurso();
   }, [id]);
 
-  if (loading) return <p>Cargando curso...</p>;
+  if (loading) return <LoadingSpinner texto="Cargando curso..." />;
   if (!curso) return <p>No se encontró el curso solicitado.</p>;
 
   return (

@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { obtenerClasePorId } from "../services/clasesVivoService";
 import "../assets/styles/pages/ClaseVivoDetallePage.css";
 import { useCart } from "../context/CartContext";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function ClaseVivoDetallePage() {
   const { id } = useParams();
@@ -25,8 +26,15 @@ export default function ClaseVivoDetallePage() {
     fetchClase();
   }, [id]);
 
-  if (loading) return <p>Cargando clase...</p>;
-  if (!clase) return <p>No se encontró la clase solicitada.</p>;
+  if (loading) return <LoadingSpinner texto="Cargando clase..." />;
+
+  if (!clase)
+    return (
+      <EmptyState
+        title="No se encontró la clase solicitada"
+        subtitle="Es posible que la clase haya sido movida o eliminada. Te invitamos a descubrir otras opciones."
+      />
+    );
 
   // 🗓️ Procesamiento de fechas
   const fechaInfo = clase.fechas;

@@ -6,6 +6,7 @@ import {
   obtenerClasesVisibles,
   obtenerClasesVisiblesPorCategoria,
 } from "../services/clasesVivoService";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const categorias = [
   { key: "todos", label: "Todos ✨" },
@@ -121,7 +122,7 @@ export default function ClasesEnVivoPage() {
       {/* 🔮 Clases */}
       <section className="grid-cursos">
         {loading ? (
-          <p>Cargando clases...</p>
+           <LoadingSpinner texto="Cargando clases..." />         
         ) : clases.length > 0 ? (
           clases.map((clase, index) => (
             <div
