@@ -21,6 +21,7 @@ export default function CursosPage() {
     const fetchCursos = async () => {
       try {
         const data = await obtenerCursosVisibles();
+        console.log("🟡 Respuesta cruda de obtenerCursosVisibles:", data);
         setCursos(data);
       } catch (error) {
         console.error("Error al obtener los cursos:", error);
@@ -32,12 +33,13 @@ export default function CursosPage() {
     fetchCursos();
   }, []);
 
-  const cursosFiltrados = cursos.filter((curso) => {
-    return (
+  const cursosFiltrados = Array.isArray(cursos)
+  ? cursos.filter((curso) => 
       categoriaSeleccionada === "todos" ||
       curso.categoria === categoriaSeleccionada
-    );
-  });
+    )
+  : [];
+
 
   return (
     <div className="cursos-container">
