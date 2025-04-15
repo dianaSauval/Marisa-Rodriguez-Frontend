@@ -66,7 +66,7 @@ export default function ReikiPage() {
               <h3>{clase.titulo}</h3>
               {clase.esPropio && (
                 <span className="badge-propio">
-                  Sistema Canalizado por Marisa Rodríguez
+                  Sistema Canalizado por Marisa Rodríguez 
                 </span>
               )}
               <p>{clase.descripcion}</p>
