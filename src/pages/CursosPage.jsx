@@ -33,13 +33,22 @@ export default function CursosPage() {
     fetchCursos();
   }, []);
 
-  const cursosFiltrados = Array.isArray(cursos)
-  ? cursos.filter((curso) => 
-      categoriaSeleccionada === "todos" ||
-      curso.categoria === categoriaSeleccionada
-    )
-  : [];
+  let cursosFiltrados = [];
 
+  if (Array.isArray(cursos)) {
+    cursosFiltrados = cursos.filter((curso) => {
+      return (
+        categoriaSeleccionada === "todos" ||
+        curso.categoria === categoriaSeleccionada
+      );
+    });
+  } else {
+    console.error("❌ cursos no es un array, es:", cursos);
+  }
+  
+  console.log("✅ cursos:", cursos);
+  console.log("✅ cursosFiltrados:", cursosFiltrados);
+  
 
   return (
     <div className="cursos-container">
@@ -78,9 +87,12 @@ export default function CursosPage() {
 
       {/* 🧿 Cursos */}
       <section className="grid-cursos">
-        {loading ? (
-          <p>Cargando cursos...</p>
-        ) : cursosFiltrados.length > 0 ? (
+      {loading ? (
+  <p>Cargando cursos...</p>
+) : !Array.isArray(cursosFiltrados) ? (
+  <p>❌ Error cargando cursos</p>
+) : cursosFiltrados.length > 0 ? (
+
           cursosFiltrados.map((curso) => (
             
   
