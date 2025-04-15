@@ -1,5 +1,4 @@
 import React from 'react';
-import cursos from '../data/cursos.json'; // o usá una constante si aún no tenés JSON
 import '../assets/styles/pages/HomePage.css';
 import cardsData from "../data/cardsData.json";
 import { Grid } from '@mui/material';
