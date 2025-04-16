@@ -17,10 +17,11 @@ export default function PanelAdmin({
   setFiltroCategoria,
   onEditarCurso,
   onActualizarVisibilidad,
-  onEliminarCurso
+  onEliminarCurso,
 }) {
   const [listaCursos, setListaCursos] = useState(cursos);
   const [visibilidadEnProceso, setVisibilidadEnProceso] = useState({});
+  const [cursoAEliminar, setCursoAEliminar] = useState(null);
 
   useEffect(() => {
     setListaCursos(cursos);
@@ -42,12 +43,12 @@ export default function PanelAdmin({
       } else {
         await editarClase(curso._id, { ...curso, visible: !curso.visible });
       }
-  
+
       const actualizados = listaCursos.map((c) =>
         c._id === curso._id ? { ...c, visible: !c.visible } : c
       );
       setListaCursos(actualizados);
-  
+
       // 🔁 Avisa al layout para que actualice también el menú lateral
       onActualizarVisibilidad(curso._id, !curso.visible, curso.tipo);
     } catch (error) {
@@ -57,7 +58,6 @@ export default function PanelAdmin({
       setVisibilidadEnProceso((prev) => ({ ...prev, [curso._id]: false }));
     }
   };
-  
 
   const eliminar = async (curso) => {
     try {
@@ -72,7 +72,6 @@ export default function PanelAdmin({
       console.error("Error al eliminar curso:", error);
     }
     onEliminarCurso(curso._id, curso.tipo); // 👈 notificamos al layout
-
   };
 
   const cursosFiltrados = listaCursos.filter((curso) => {
@@ -130,10 +129,11 @@ export default function PanelAdmin({
                 </button>
                 <button
                   className="boton-admin eliminar"
-                  onClick={() => eliminar(curso)}
+                  onClick={() => setCursoAEliminar(curso)}
                 >
                   <FiTrash2 /> Eliminar
                 </button>
+
                 <button
                   className={`boton-admin visibilidad ${
                     curso.visible ? "ocultar" : "mostrar"
@@ -155,6 +155,32 @@ export default function PanelAdmin({
           ))
         )}
       </div>
+      {cursoAEliminar && (
+        <div className="modal-eliminar-overlay">
+          <div className="modal-eliminar">
+            <h3>¿Estás segura de que querés eliminar este curso?</h3>
+            <p className="nombre-curso">"{cursoAEliminar.titulo}"</p>
+
+            <div className="acciones-modal">
+              <button
+                className="confirmar"
+                onClick={() => {
+                  eliminar(cursoAEliminar);
+                  setCursoAEliminar(null);
+                }}
+              >
+                Sí, eliminar
+              </button>
+              <button
+                className="cancelar"
+                onClick={() => setCursoAEliminar(null)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

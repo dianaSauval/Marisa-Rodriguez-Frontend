@@ -41,7 +41,7 @@ export default function CursoDetallePage() {
           <p className="descripcion">{curso.descripcion}</p>
 
           <p>📚 Curso online grabado para hacer a tu ritmo</p>
-          <p>🕓 Duración: {curso.duracion} horas</p>
+          <p>🕓 Duración: {curso.duracion}</p>
           <p>🗓️ Acceso inmediato y disponible por 1 año</p>
 
           {/* ✨ Temas del curso */}
@@ -60,10 +60,10 @@ export default function CursoDetallePage() {
           <div className="detalle-beneficios">
             <h3>✨ ¿Qué incluye este curso?</h3>
             <ul>
-              <li>✔️ Acceso por 1 año desde la compra</li>
-              <li>✔️ Espacio para consultas por WhatsApp</li>
-              <li>✔️ Material complementario en PDF</li>
-           {/*    <li>✔️ Avance progresivo en la plataforma</li> */}
+              <li>✔ Acceso por 1 año desde la compra</li>
+              <li>✔ Espacio para consultas por WhatsApp</li>
+              <li>✔ Material complementario en PDF</li>
+           {/*    <li>✔ Avance progresivo en la plataforma</li> */}
             </ul>
           </div>
 

@@ -240,6 +240,91 @@
     vertical-align: middle;
   }
 
+  /** SECCION MODAL ELIMINAR**/
+/* 🌙 Modal de confirmación */
+.modal-eliminar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(46, 26, 61, 0.8); /* violeta oscuro con opacidad */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-eliminar {
+  background: var(--color-fondo);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--sombra-suave);
+  border: var(--borde-mistico);
+  animation: fadeInUp 0.4s ease;
+}
+
+.modal-eliminar h3 {
+  font-size: 2rem;
+  color: var(--color-acento);
+  font-family: var(--fuente-titulo);
+  font-weight: 100;
+  margin-bottom: 0.5rem;
+}
+
+.nombre-curso {
+  font-weight: 600;
+  color: var(--color-texto);
+  font-size: 1.2rem;
+  margin: 0.5rem 0 1.2rem;
+  font-family: var(--fuente-principal);
+}
+
+.acciones-modal {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.acciones-modal .confirmar,
+.acciones-modal .cancelar {
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 1.2rem;
+  font-weight: 600;
+  font-family: var(--fuente-principal);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transicion-suave);
+}
+
+.acciones-modal .confirmar {
+  background: var(--color-secundario);
+  color: var(--color-fondo);
+}
+
+.acciones-modal .confirmar:hover {
+  background: #d156aa;
+}
+
+.acciones-modal .cancelar {
+  background: var(--color-claro);
+  color: var(--color-fondo);
+}
+
+.acciones-modal .cancelar:hover {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+}
+
+  
+
   
   @keyframes ripple {
     to {

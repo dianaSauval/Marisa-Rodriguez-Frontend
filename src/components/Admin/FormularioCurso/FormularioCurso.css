@@ -202,6 +202,21 @@ button.agregar-tema:hover {
   color: var(--color-secundario);
 }
 
+.campo-error input,
+.campo-error textarea,
+.campo-error select {
+  border: 2px solid #d72638;
+  background-color: #fff4f4;
+}
+
+.mensaje-error {
+  color: #d72638;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+
 
 /* Responsive */
 @media (max-width: 768px) {
