@@ -5,6 +5,7 @@ import EmptyState from "../components/EmptyState/EmptyState";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useState } from "react";
+import BotonPaypal from "../components/BotonPaypal/BotonPaypal";
 
 export default function CarritoPage() {
   const [moneda, setMoneda] = useState("ARS"); // "ARS" o "USD"
@@ -20,7 +21,10 @@ export default function CarritoPage() {
   const manejarCompra = async () => {
     const token = localStorage.getItem("token");
     const cursos = carrito.map((curso) => curso._id);
-    console.log("🛰 Enviando a:", `${import.meta.env.VITE_BACKEND_URL}/pagos/crear-preferencia`);
+    console.log(
+      "🛰 Enviando a:",
+      `${import.meta.env.VITE_BACKEND_URL}/pagos/crear-preferencia`
+    );
 
     const res = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/pagos/crear-preferencia`,
@@ -31,17 +35,15 @@ export default function CarritoPage() {
         },
       }
     );
-  
+
     window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${res.data.id}`;
     localStorage.setItem("mp_preference_id", res.data.id);
-
   };
-  
 
   return (
     <div className="carrito-container">
       <h1>Tu Carrito</h1>
-  
+
       {!usuario ? (
         <EmptyState
           title="Necesitás una cuenta para continuar"
@@ -49,7 +51,7 @@ export default function CarritoPage() {
         />
       ) : carrito.length === 0 ? (
         <EmptyState
-          title="Aún no haz comprado ningún curso"
+          title="Aún no haz elegido ningún curso"
           subtitle="Tu recorrido aún no comenzó... pero cada viaje empieza con un primer paso ✨"
         />
       ) : (
@@ -67,7 +69,7 @@ export default function CarritoPage() {
                       ? `$${curso.precioAr?.toLocaleString("es-AR")} ARS`
                       : `USD ${curso.precioUsd?.toLocaleString("en-US")}`}
                   </span>
-  
+
                   <button
                     className="carrito-eliminar"
                     onClick={() => removerDelCarrito(curso.titulo)}
@@ -78,7 +80,7 @@ export default function CarritoPage() {
               </li>
             ))}
           </ul>
-  
+
           <div className="carrito-footer">
             <div className="carrito-moneda">
               <label>Elegí la moneda:</label>
@@ -90,29 +92,49 @@ export default function CarritoPage() {
                 <option value="USD">Dólares estadounidenses (USD)</option>
               </select>
             </div>
-  
+
             <p className="carrito-total">
               💰 Total:{" "}
               {moneda === "ARS"
                 ? `$${total.toLocaleString("es-AR")} ARS`
                 : `USD ${total.toLocaleString("en-US")}`}
             </p>
-  
-            <div className="carrito-acciones">
+
+            <div
+              className={`carrito-acciones ${
+                moneda === "USD" ? "acciones-columna" : ""
+              }`}
+            >
               <button className="boton-vaciar" onClick={vaciarCarrito}>
                 Vaciar Carrito
               </button>
-              <Link to="/checkout" className="boton-pagar">
-                Ir a Pagar
-              </Link>
-              <button className="boton-pagar" onClick={manejarCompra}>
-                Comprar ahora
-              </button>
+
+              {moneda === "ARS" && (
+                <button className="boton-pagar" onClick={manejarCompra}>
+                  Pagar con Mercado Pago
+                </button>
+              )}
+
+              {moneda === "USD" && (
+                <div className="paypal-wrapper">
+                  <p className="carrito-opcion-paypal">💳 Pagá con PayPal</p>
+                  <div style={{ width: "100%" }}>
+                    <BotonPaypal
+                      precio={total.toFixed(2)}
+                      descripcion={`Compra de ${carrito.length} curso(s)`}
+                      cursos={carrito}
+                      onAprobado={() => {
+                        vaciarCarrito();
+                        window.location.href = "/pago-exitoso";
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </>
       )}
     </div>
   );
-  
 }

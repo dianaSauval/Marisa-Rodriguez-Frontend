@@ -7,8 +7,9 @@ export const confirmarCompraCursos = async (cursos) => {
     return response.data;
 
   } catch (error) {
-    console.error("❌ Error al confirmar compra:", error);
+    console.error("❌ Error al confirmar compra:", error.response || error);
     throw error.response?.data || { mensaje: "Error al confirmar compra" };
+    
   }
 };
 

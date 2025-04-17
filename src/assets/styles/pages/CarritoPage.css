@@ -122,7 +122,10 @@ h1 {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
 }
+
 
 .boton-vaciar,
 .boton-pagar {
@@ -164,6 +167,39 @@ h1 {
   font-size: 0.95rem;
 }
 
+.paypal-wrapper {
+  flex: 1 1 300px;
+  max-width: 360px;
+  padding: 1rem;
+  border: var(--borde-mistico);
+  border-radius: 12px;
+  background: var(--color-claro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#paypal-button-container {
+  width: 100%;
+  max-width: 320px;
+}
+
+
+.carrito-opcion-paypal {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--color-primario);
+}
+
+/* Cuando elegís USD, pasamos a columna */
+.carrito-acciones.acciones-columna {
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+
+
 /* 🌟 Responsivo */
 @media (max-width: 600px) {
   .carrito-item {
@@ -184,3 +220,15 @@ h1 {
     justify-content: flex-start;
   }
 }
+
+@media (max-width: 600px) {
+  .paypal-wrapper {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  #paypal-button-container {
+    max-width: 100%;
+  }
+}
+
