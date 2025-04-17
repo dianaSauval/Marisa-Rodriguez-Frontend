@@ -104,7 +104,7 @@ function App() {
                 element={
                   <ProtectedRoute roles={["admin"]}>
                     <AdminLayout />
-                  </ProtectedRoute>
+                  </ProtectedRoute> 
                 }
               />
             </Routes>
