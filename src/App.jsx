@@ -107,7 +107,7 @@ function App() {
                   </ProtectedRoute> 
                 }
               />
-            </Routes>
+            </Routes> 
             <Footer />
           </div>
         </Router>
