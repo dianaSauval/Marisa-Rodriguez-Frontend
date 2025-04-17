@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "../assets/styles/pages/ContactoPage.css";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { enviarMensajeDeContacto } from "../services/contactoService";
+
 import { useState } from "react";
 
 export default function ContactoPage() {
@@ -22,31 +24,23 @@ export default function ContactoPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const { nombre, email, mensaje } = formData;
-
+  
     if (!nombre || !email || !mensaje) {
       setError("Por favor completá todos los campos.");
       return;
     }
-
+  
     try {
-      const response = await fetch("https://formspree.io/f/your_form_id", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setMensajeEnviado(true);
-        setFormData({ nombre: "", email: "", mensaje: "" });
-      } else {
-        setError("Ocurrió un error. Por favor intentá más tarde.");
-      }
+      await enviarMensajeDeContacto({ nombre, email, mensaje });
+      setMensajeEnviado(true);
+      setFormData({ nombre: "", email: "", mensaje: "" });
     } catch (err) {
-      setError("Error de red. Verificá tu conexión.");
+      setError(err.message || "No se pudo enviar el mensaje.");
     }
   };
+  
 
   return (
     <div className="contacto-container">
