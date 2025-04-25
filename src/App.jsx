@@ -34,6 +34,7 @@ import PagoFallidoPage from "./pages/PagoFallidoPage";
 import CursoCompradoDetallePage from "./pages/CursoCompradoDetallePage";
 
 function App() {
+  console.log("🔥 VITE_API_URL:", import.meta.env.VITE_API_URL); 
   return (
     <AuthProvider>
       <CartProvider>
