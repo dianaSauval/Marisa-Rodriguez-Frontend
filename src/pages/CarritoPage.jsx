@@ -76,7 +76,7 @@ export default function CarritoPage() {
                     onClick={() => removerDelCarrito(curso.titulo)}
                   >
                     ✖
-                  </button>
+                  </button> 
                 </div>
               </li>
             ))}
