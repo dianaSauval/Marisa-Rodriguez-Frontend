@@ -12,7 +12,7 @@ export default function CarritoPage() {
 
   const { carrito, removerDelCarrito, vaciarCarrito } = useCart();
   const { usuario } = useAuth();
-  console.log("🔥 VITE_API_URL:", import.meta.env.VITE_API_URL);
+  console.log("🔥 VITE_API_URL:", import.meta.env.VITE_API_URL); 
 
   const total = carrito.reduce((acc, curso) => {
     const precio = moneda === "ARS" ? curso.precioAr : curso.precioUsd;
