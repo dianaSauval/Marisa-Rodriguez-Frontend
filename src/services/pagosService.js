@@ -18,3 +18,10 @@ export const obtenerPreferencia = async (id) => {
   const response = await api.get(`/pagos/preferencia/${id}`);
   return response.data;
 };
+
+// ✅ Crear una preferencia de pago
+export const crearPreferencia = async (cursos) => {
+  const response = await api.post("/pagos/crear-preferencia", { cursos });
+  return response.data;
+};
+

@@ -20,26 +20,28 @@ export default function CarritoPage() {
   }, 0);
 
   const manejarCompra = async () => {
-    const token = localStorage.getItem("token");
     const cursos = carrito.map((curso) => curso._id);
     console.log(
       "🛰 Enviando a:",
       `${import.meta.env.VITE_API_URL}/pagos/crear-preferencia`
     );
-
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/pagos/crear-preferencia`,
-      { cursos },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${res.data.id}`;
-    localStorage.setItem("mp_preference_id", res.data.id);
+  
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/pagos/crear-preferencia`,
+        { cursos } // Solo mandamos el body, sin headers especiales
+      );
+  
+      console.log("🟢 Preferencia creada:", res.data);
+  
+      window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${res.data.id}`;
+      localStorage.setItem("mp_preference_id", res.data.id);
+    } catch (error) {
+      console.error("❌ Error al crear preferencia de Mercado Pago:", error);
+      alert("Hubo un error al crear la preferencia de pago. Intenta nuevamente.");
+    }
   };
+  
 
   return (
     <div className="carrito-container">
@@ -75,6 +77,7 @@ export default function CarritoPage() {
                     className="carrito-eliminar"
                     onClick={() => removerDelCarrito(curso.titulo)}
                   >
+                    
                     ✖
                   </button> 
                 </div>
