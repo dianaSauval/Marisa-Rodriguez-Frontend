@@ -8,7 +8,7 @@ import { useState } from "react";
 import BotonPaypal from "../components/BotonPaypal/BotonPaypal";
 
 export default function CarritoPage() {
-  const [moneda, setMoneda] = useState("ARS"); // "ARS" o "USD"
+  const [moneda, setMoneda] = useState("ARS"); // "ARS" o "USD" 
 
   const { carrito, removerDelCarrito, vaciarCarrito } = useCart();
   const { usuario } = useAuth();
