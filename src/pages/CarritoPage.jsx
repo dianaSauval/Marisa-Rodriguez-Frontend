@@ -32,7 +32,7 @@ export default function CarritoPage() {
         { cursos } // Solo mandamos el body, sin headers especiales
       );
   
-      console.log("🟢 Preferencia creada:", res.data);
+      console.log("🟢 Preferencia creada:", res.data); 
   
       window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${res.data.id}`;
       localStorage.setItem("mp_preference_id", res.data.id);
