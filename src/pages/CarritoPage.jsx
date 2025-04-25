@@ -12,7 +12,7 @@ export default function CarritoPage() {
 
   const { carrito, removerDelCarrito, vaciarCarrito } = useCart();
   const { usuario } = useAuth();
-  console.log("🔥 VITE_API_URL:", import.meta.env.VITE_API_URL); 
+  
 
   const total = carrito.reduce((acc, curso) => {
     const precio = moneda === "ARS" ? curso.precioAr : curso.precioUsd;
@@ -24,11 +24,11 @@ export default function CarritoPage() {
     const cursos = carrito.map((curso) => curso._id);
     console.log(
       "🛰 Enviando a:",
-      `${import.meta.env.VITE_BACKEND_URL}/pagos/crear-preferencia`
+      `${import.meta.env.VITE_API_URL}/pagos/crear-preferencia`
     );
 
     const res = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/pagos/crear-preferencia`,
+      `${import.meta.env.VITE_API_URL}/pagos/crear-preferencia`,
       { cursos },
       {
         headers: {
