@@ -3,13 +3,14 @@ import api from "./api";
 // ✅ Crear una orden en PayPal incluyendo los cursos
 export const crearOrdenPaypal = async ({ precio, descripcion, cursos }) => {
   try {
+    console.log("📤 Creando orden PayPal:", { precio, descripcion, cursos });
     const response = await api.post("/paypal/crear-orden", {
       precio,
       descripcion,
       cursos, // 👈 ahora se envían los cursos
     });
 
-    console.log("🧾 Respuesta crearOrdenPaypal:", response.data.id); // 👉 agregá esto
+    console.log("🧾 Respuesta crearOrdenPaypal:", response.data);
 
     return response.data.id;
   } catch (error) {
