@@ -9,7 +9,7 @@ export const crearOrdenPaypal = async ({ precio, descripcion, cursos }) => {
       cursos, // 👈 ahora se envían los cursos
     });
 
-    console.log("🧾 Respuesta crearOrdenPaypal:", response.data); // 👉 agregá esto
+    console.log("🧾 Respuesta crearOrdenPaypal:", response.data.id); // 👉 agregá esto
 
     return response.data.id;
   } catch (error) {

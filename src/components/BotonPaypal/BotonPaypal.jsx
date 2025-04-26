@@ -4,12 +4,15 @@ import "./BotonPaypal.css";
 
 export default function BotonPaypal({ precio, descripcion, cursos = [], onAprobado }) {
   const [cargando, setCargando] = useState(true);
+  const [containerId] = useState(() => `paypal-button-container-${Math.random().toString(36).substr(2, 9)}`); // 🎯 ID único
 
   useEffect(() => {
     console.log("🤖 Entró al useEffect de PayPal");
+    console.log("📦 Cursos pasados a BotonPaypal:", cursos);
+
     if (!window.paypal || cursos.length === 0) return;
 
-    const container = document.getElementById("paypal-button-container");
+    const container = document.getElementById(containerId);
     if (!container) return;
 
     window.paypal.Buttons({
@@ -25,6 +28,7 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
           descripcion,
           cursos: cursos.map((c) => c._id),
         });
+        console.log("🧾 ID de orden creada:", idOrden);
         return idOrden;
       },
       onApprove: async (data, actions) => {
@@ -56,10 +60,10 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
         window.location.href = "/pago-fallido";
       },
       onInit: () => {
-        setCargando(false); // ✅ apenas se inicializa, quitamos el spinner
+        setCargando(false);
       },
-    }).render(container);
-  }, [precio, descripcion, cursos, onAprobado]);
+    }).render(`#${containerId}`);
+  }, [precio, descripcion, cursos, onAprobado, containerId]);
 
   return (
     <div className="paypal-boton-container">
@@ -69,7 +73,7 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
           <p className="spinner-texto">Cargando botón de pago...</p>
         </div>
       )}
-      <div id="paypal-button-container" style={{ minHeight: "80px" }} />
+      <div id={containerId} style={{ minHeight: "80px" }} />
     </div>
   );
 }
