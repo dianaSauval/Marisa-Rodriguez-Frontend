@@ -25,6 +25,18 @@
     font-size: 14px;
     color: #e3cde6; /* Texto suave, combina con tu sitio */
   }
+
+  .error-paypal {
+    background-color: #ffe5e5;
+    border: 1px solid #ff7b7b;
+    color: #b30000;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
   
   @keyframes spin {
     0% { transform: rotate(0deg); }

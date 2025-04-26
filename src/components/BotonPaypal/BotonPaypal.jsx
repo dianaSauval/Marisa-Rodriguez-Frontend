@@ -4,13 +4,38 @@ import "./BotonPaypal.css";
 
 export default function BotonPaypal({ precio, descripcion, cursos = [], onAprobado }) {
   const [cargando, setCargando] = useState(true);
-  const [containerId] = useState(() => `paypal-button-container-${Math.random().toString(36).substr(2, 9)}`); // 🎯 ID único
+  const [sdkReady, setSdkReady] = useState(false);
+  const [errorSDK, setErrorSDK] = useState(false);
+  const [containerId] = useState(() => `paypal-button-container-${Math.random().toString(36).substr(2, 9)}`);
 
   useEffect(() => {
-    console.log("🤖 Entró al useEffect de PayPal");
-    console.log("📦 Cursos pasados a BotonPaypal:", cursos);
+    const cargarPaypalSDK = async () => {
+      if (window.paypal) {
+        setSdkReady(true);
+        return;
+      }
 
-    if (!window.paypal || cursos.length === 0) return;
+      const script = document.createElement("script");
+      script.src = "https://www.paypal.com/sdk/js?client-id=Afze7SVu-m_05Jj-7EKt-JyzyFlWnCn1C9AZw0jQWVkyFp2o7XyVaEI0xNfUhzWKb3nymmDdBG56PKvw&currency=USD&intent=capture";
+      script.type = "text/javascript";
+      script.async = true;
+      script.onload = () => {
+        console.log("✅ SDK de PayPal cargado");
+        setSdkReady(true);
+      };
+      script.onerror = () => {
+        console.error("❌ Error cargando el SDK de PayPal");
+        setErrorSDK(true);
+        setCargando(false);
+      };
+      document.body.appendChild(script);
+    };
+
+    cargarPaypalSDK();
+  }, []);
+
+  useEffect(() => {
+    if (!sdkReady || cursos.length === 0) return;
 
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -63,7 +88,7 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
         setCargando(false);
       },
     }).render(`#${containerId}`);
-  }, [precio, descripcion, cursos, onAprobado, containerId]);
+  }, [precio, descripcion, cursos, onAprobado, containerId, sdkReady]);
 
   return (
     <div className="paypal-boton-container">
@@ -73,7 +98,14 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
           <p className="spinner-texto">Cargando botón de pago...</p>
         </div>
       )}
-      <div id={containerId} style={{ minHeight: "80px" }} />
+
+      {errorSDK && (
+        <div className="error-paypal">
+          <p>❌ Hubo un problema cargando el botón de PayPal. Intentá recargar la página.</p>
+        </div>
+      )}
+
+      <div id={containerId} style={{ minHeight: "80px", minWidth: "200px" }} />
     </div>
   );
 }
