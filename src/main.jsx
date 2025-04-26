@@ -7,7 +7,7 @@ import theme from './theme'; // ✅ tu theme extendido con functions
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}> 
       <CssBaseline />
       <App />
     </ThemeProvider>
