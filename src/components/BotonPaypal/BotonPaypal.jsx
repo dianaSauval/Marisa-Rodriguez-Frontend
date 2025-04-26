@@ -6,6 +6,7 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
+    console.log("🤖 Entró al useEffect de PayPal");
     if (!window.paypal || cursos.length === 0) return;
 
     const container = document.getElementById("paypal-button-container");

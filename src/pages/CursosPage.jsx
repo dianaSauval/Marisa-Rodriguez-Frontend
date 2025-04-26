@@ -22,7 +22,6 @@ export default function CursosPage() {
     const fetchCursos = async () => {
       try {
         const data = await obtenerCursosVisibles();
-        console.log("🟡 CURSOS DESDE BACKEND:", JSON.stringify(data, null, 2));
         setCursos(data);
       } catch (error) {
         console.error("❌ Error al obtener los cursos:", error);
@@ -50,9 +49,7 @@ export default function CursosPage() {
     console.error("❌ cursos no es un array:", cursos);
   }
   
-  
-  console.log("✅ cursos:", cursos);
-  console.log("✅ cursosFiltrados:", cursosFiltrados);
+
   
 
   return (
