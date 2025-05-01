@@ -22,6 +22,7 @@ function Header() {
 
   const enlaces = [
     { label: "Inicio", href: "/" },
+    { label: "Sobre mí", href: "/about" },
     { label: "Cursos", href: "/cursos" },
     { label: "Clases en vivo", href: "/clases-en-vivo" },
     { label: "Contacto", href: "/contacto" },

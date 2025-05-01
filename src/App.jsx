@@ -32,6 +32,7 @@ import PagoExitosoPage from "./pages/PagoExitosoPage";
 import PagoPendientePage from "./pages/PagoPendientePage";
 import PagoFallidoPage from "./pages/PagoFallidoPage";
 import CursoCompradoDetallePage from "./pages/CursoCompradoDetallePage";
+import About from "./pages/AboutPage";
 
 function App() {
   console.log("🔥 VITE_API_URL:", import.meta.env.VITE_API_URL); 
@@ -44,6 +45,7 @@ function App() {
             <Routes>
               {/* 🌟 Públicas */}
               <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<About />} />
               <Route path="/reiki" element={<ReikiPage />} />
               <Route path="/tarot" element={<TarotPage />} />
               <Route path="/terapias-de-luz" element={<TerapiasPage />} />
