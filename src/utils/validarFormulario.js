@@ -37,7 +37,7 @@ export default function validarFormulario(formulario) {
     if (!formulario.fechas.fechaInicio) errores.fechaInicio = "Falta la fecha de inicio";
     if (!formulario.fechas.horario) errores.horario = "Falta el horario";
     if (!formulario.fechas.diaSemana) errores.diaSemana = "Falta el día de la semana";
-  }
+  }  
 
   return errores;
 }
