@@ -216,6 +216,112 @@ button.agregar-tema:hover {
   display: block;
 }
 
+/* 🌸 PDFs */
+.campo-pdfs {
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background-color: var(--color-fondo);
+  border: 2px dashed var(--color-secundario);
+  border-radius: 1.5rem;
+  box-shadow: var(--sombra-suave);
+}
+
+.pdfs-titulo {
+  font-size: 2rem;
+  font-weight: 100;
+  margin-bottom: 0.5rem;
+  color: var(--color-acento);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pdfs-titulo span {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: var(--color-texto-secundario);
+}
+
+.pdfs-subtexto {
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-texto-secundario);
+}
+
+.pdf-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pdf-item {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid var(--color-secundario);
+  border-radius: 1rem;
+  background-color: var(--borde-radiante);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.pdf-item label {
+  font-size: 1.05rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--color-texto);
+}
+
+.pdf-item input {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-secundario);
+  border-radius: 0.8rem;
+  background-color: white;
+}
+
+.boton-eliminar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #d72638;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.boton-eliminar:hover {
+  background-color: #a61e2b;
+}
+
+/* ✨ Animaciones suaves */
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.fade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 300ms, transform 300ms;
+}
+
 
 
 /* Responsive */

@@ -102,7 +102,7 @@ export default function CursoDetallePage() {
 
         {curso.imagen && (
           <div className="curso-imagen">
-            <img src={curso.imagen} alt={`Imagen del curso ${curso.titulo}`} />
+            <img src={curso.imagen.url} alt={`Imagen del curso ${curso.titulo}`} />
           </div>
         )}
       </section>

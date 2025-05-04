@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { crearOrdenPaypal } from "../../services/paypalService";
+import api from "../../services/api"; // Asegurate de importar esto también
 import "./BotonPaypal.css";
 
 export default function BotonPaypal({ precio, descripcion, cursos = [], onAprobado }) {
   const [cargando, setCargando] = useState(true);
   const [sdkReady, setSdkReady] = useState(false);
   const [errorSDK, setErrorSDK] = useState(false);
-  const [containerId] = useState(() => `paypal-button-container-${Math.random().toString(36).substr(2, 9)}`);
+  const [containerId] = useState(() =>
+    `paypal-button-container-${Math.random().toString(36).substr(2, 9)}`
+  );
 
+  // Cargar el SDK de PayPal
   useEffect(() => {
     const cargarPaypalSDK = async () => {
       if (window.paypal) {
@@ -16,7 +20,8 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
       }
 
       const script = document.createElement("script");
-      script.src = "https://www.paypal.com/sdk/js?client-id=Afze7SVu-m_05Jj-7EKt-JyzyFlWnCn1C9AZw0jQWVkyFp2o7XyVaEI0xNfUhzWKb3nymmDdBG56PKvw&currency=USD&intent=capture";
+      script.src =
+        "https://www.paypal.com/sdk/js?client-id=Afze7SVu-m_05Jj-7EKt-JyzyFlWnCn1C9AZw0jQWVkyFp2o7XyVaEI0xNfUhzWKb3nymmDdBG56PKvw&currency=USD&intent=capture";
       script.type = "text/javascript";
       script.async = true;
       script.onload = () => {
@@ -34,60 +39,80 @@ export default function BotonPaypal({ precio, descripcion, cursos = [], onAproba
     cargarPaypalSDK();
   }, []);
 
+  // Renderizar el botón cuando el SDK esté listo
   useEffect(() => {
     if (!sdkReady || cursos.length === 0) return;
 
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    window.paypal.Buttons({
-      style: {
-        layout: "vertical",
-        color: "gold",
-        shape: "rect",
-        label: "paypal",
-      },
-      createOrder: async () => {
-        const idOrden = await crearOrdenPaypal({
-          precio,
-          descripcion,
-          cursos: cursos.map((c) => c._id),
-        });
-        console.log("🧾 ID de orden creada:", idOrden);
-        return idOrden;
-      },
-      onApprove: async (data, actions) => {
-        try {
-          const orden = await actions.order.capture();
+    window.paypal
+      .Buttons({
+        style: {
+          layout: "vertical",
+          color: "gold",
+          shape: "rect",
+          label: "paypal",
+        },
 
-          const descripcion = orden.purchase_units?.[0]?.description || "";
-          const ids = descripcion
-            .replace("Compra: ", "")
-            .split(",")
-            .map((id) => id.trim())
-            .filter((id) => id.length > 0);
+        // Crear la orden en tu backend
+        createOrder: async () => {
+          try {
+            const idOrden = await crearOrdenPaypal({
+              precio,
+              descripcion,
+              cursos: cursos.map((c) => c._id),
+            });
+            console.log("🧾 ID de orden creada:", idOrden);
+            return idOrden;
+          } catch (error) {
+            console.error("❌ Error creando orden PayPal:", error);
+            window.location.href = "/pago-fallido";
+          }
+        },
 
-          localStorage.setItem("paypal_pagado", "true");
-          localStorage.setItem("paypal_cursos", JSON.stringify(ids));
+        // Capturar el pago desde tu backend
+        onApprove: async (data) => {
+          try {
+            const captureRes = await api.post("/paypal/capturar-orden", {
+              orderID: data.orderID,
+            });
 
-          onAprobado(orden);
-        } catch (error) {
-          console.error("❌ Error al capturar pago de PayPal:", error);
+            console.log("💸 Orden capturada en backend:", captureRes.data);
+
+            const descripcion = captureRes.data.datos.purchase_units?.[0]?.description || "";
+
+            const ids = descripcion
+              .replace("Compra: ", "")
+              .split(",")
+              .map((id) => id.trim())
+              .filter((id) => id.length > 0);
+
+            localStorage.setItem("paypal_pagado", "true");
+            localStorage.setItem("paypal_cursos", JSON.stringify(ids));
+
+            onAprobado(captureRes.data);
+          } catch (error) {
+            console.error("❌ Error al capturar pago de PayPal:", error);
+            window.location.href = "/pago-fallido";
+          }
+        },
+
+        onError: (err) => {
+          console.error("❌ Error en PayPal:", err);
           window.location.href = "/pago-fallido";
-        }
-      },
-      onError: (err) => {
-        console.error("❌ Error en PayPal:", err);
-        window.location.href = "/pago-fallido";
-      },
-      onCancel: () => {
-        console.warn("⚠️ Usuario canceló el pago.");
-        window.location.href = "/pago-fallido";
-      },
-      onInit: () => {
-        setCargando(false);
-      },
-    }).render(`#${containerId}`);
+        },
+
+        onCancel: () => {
+          console.warn("⚠️ Usuario canceló el pago.");
+          window.location.href = "/pago-fallido";
+        },
+
+        onInit: () => {
+          setCargando(false);
+        },
+      })
+      .render(`#${containerId}`);
   }, [precio, descripcion, cursos, onAprobado, containerId, sdkReady]);
 
   return (

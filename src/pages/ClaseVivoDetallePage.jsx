@@ -100,7 +100,7 @@ export default function ClaseVivoDetallePage() {
 
         {clase.imagen && (
           <div className="curso-imagen">
-            <img src={clase.imagen} alt={`Imagen del curso ${clase.titulo}`} />
+            <img src={clase.imagen.url} alt={`Imagen del curso ${clase.titulo}`} />
           </div>
         )}
       </section>

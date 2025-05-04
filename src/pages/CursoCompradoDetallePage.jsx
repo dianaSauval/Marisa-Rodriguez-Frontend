@@ -55,6 +55,29 @@ export default function CursoCompradoDetallePage() {
           className="video-embed"
         />
       </div>
+      {curso.pdfs?.length > 0 && (
+  <div className="cursoComprado-pdfs">
+    <h2>📄 Material complementario para descargar</h2>
+    <p className="cursoComprado-pdfs-descripcion">
+      Estos archivos acompañan al curso y te ayudarán a profundizar. Están alojados en Google Drive.
+    </p>
+    <ul className="cursoComprado-pdfs-lista">
+      {curso.pdfs.map((pdf, i) => (
+        <li key={i}>
+          <a
+            href={pdf.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursoComprado-pdf-link"
+          >
+            📥 {pdf.titulo || `Material ${i + 1}`}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
 
       <a
         href={`https://wa.me/5491124596372?text=${encodeURIComponent(

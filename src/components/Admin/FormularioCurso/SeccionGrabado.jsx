@@ -1,7 +1,14 @@
 // SeccionGrabado.jsx
 import CampoBasico from "./CampoBasico";
+import CampoPDFs from "./CampoPDFs";
 
-export default function SeccionGrabado({ formulario, errores, onChangeDuracion, onChangeVideo }) {
+export default function SeccionGrabado({
+  formulario,
+  errores,
+  onChangeDuracion,
+  onChangeVideo,
+  onChangePDFs,
+}) {
   return (
     <div className="seccion-condicional">
       <CampoBasico
@@ -37,6 +44,11 @@ export default function SeccionGrabado({ formulario, errores, onChangeDuracion, 
         value={formulario.video.url}
         onChange={onChangeVideo}
         error={errores.videoUrl}
+      />
+      <CampoPDFs
+        pdfs={formulario.pdfs || []}
+        setPDFs={onChangePDFs}
+        errores={errores}
       />
     </div>
   );

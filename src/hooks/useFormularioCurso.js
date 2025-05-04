@@ -1,3 +1,4 @@
+// hooks/useFormularioCurso.js
 import { useState, useEffect } from "react";
 
 export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
@@ -13,6 +14,7 @@ export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
     duracion: "",
     contenido: [""],
     video: { titulo: "", descripcion: "", url: "" },
+    pdfs: [],
     imagen: { url: "", public_id: "" },
     fechas: {
       cantidadClases: "",
@@ -28,7 +30,12 @@ export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
 
   useEffect(() => {
     if (curso && Object.keys(curso).length > 0) {
-      setFormulario((prev) => ({ ...prev, ...curso }));
+      setFormulario((prev) => ({
+        ...prev,
+        ...curso,
+        pdfs: curso.pdfs || [],
+        video: curso.video || { titulo: "", descripcion: "", url: "" },
+      }));
     }
   }, [curso]);
 
@@ -38,25 +45,24 @@ export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-    // 🧽 Limpiar error si es válido
-  if (errores[name]) {
-    const erroresActualizados = { ...errores };
 
-    // Validaciones rápidas individuales
-    if (name === "titulo" && value.trim()) delete erroresActualizados.titulo;
-    if (name === "descripcion" && value.trim()) delete erroresActualizados.descripcion;
-    if (name === "precioAr" && value) delete erroresActualizados.precioAr;
-    if (name === "precioUsd" && value) delete erroresActualizados.precioUsd;
-    if (name === "tipo" && value) delete erroresActualizados.tipo;
-    if (name === "categoria" && value) delete erroresActualizados.categoria;
+    if (errores[name]) {
+      const erroresActualizados = { ...errores };
 
-    setErrores(erroresActualizados);
-  }
+      if (name === "titulo" && value.trim()) delete erroresActualizados.titulo;
+      if (name === "descripcion" && value.trim()) delete erroresActualizados.descripcion;
+      if (name === "precioAr" && value) delete erroresActualizados.precioAr;
+      if (name === "precioUsd" && value) delete erroresActualizados.precioUsd;
+      if (name === "tipo" && value) delete erroresActualizados.tipo;
+      if (name === "categoria" && value) delete erroresActualizados.categoria;
+
+      setErrores(erroresActualizados);
+    }
   };
 
   const manejarCambioFechas = (e) => {
     const { name, value } = e.target;
-  
+
     setFormulario((prev) => ({
       ...prev,
       fechas: {
@@ -64,12 +70,11 @@ export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
         [name]: value,
       },
     }));
-  
-    // 🧽 Limpiar errores si el campo era requerido y ahora tiene valor
+
     const camposConValidacion = ["cantidadClases", "fechaInicio", "horario"];
     if (camposConValidacion.includes(name) && errores[name]) {
       const esValido = value !== "" && value !== null && value !== undefined;
-  
+
       if (esValido) {
         const erroresActualizados = { ...errores };
         delete erroresActualizados[name];
@@ -77,7 +82,6 @@ export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
       }
     }
   };
-  
 
   const manejarCambioContenido = (index, value) => {
     const nuevoContenido = [...formulario.contenido];
@@ -111,18 +115,32 @@ export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
       video: { ...prev.video, [name]: value },
     }));
 
-    // 🧽 Limpiar errores si el valor es válido
-  const errorMap = {
-    titulo: "videoTitulo",
-    descripcion: "videoDescripcion",
-    url: "videoUrl",
+    const errorMap = {
+      titulo: "videoTitulo",
+      descripcion: "videoDescripcion",
+      url: "videoUrl",
+    };
+
+    if (errores[errorMap[name]] && value.trim()) {
+      const erroresActualizados = { ...errores };
+      delete erroresActualizados[errorMap[name]];
+      setErrores(erroresActualizados);
+    }
   };
 
-  if (errores[errorMap[name]] && value.trim()) {
+  const manejarCambioPDFs = (nuevosPDFs) => {
+    setFormulario((prev) => ({ ...prev, pdfs: nuevosPDFs }));
+
     const erroresActualizados = { ...errores };
-    delete erroresActualizados[errorMap[name]];
+    nuevosPDFs.forEach((pdf, index) => {
+      if (pdf.titulo?.trim()) {
+        delete erroresActualizados[`pdfs.${index}.titulo`];
+      }
+      if (pdf.url?.startsWith("http")) {
+        delete erroresActualizados[`pdfs.${index}.url`];
+      }
+    });
     setErrores(erroresActualizados);
-  }
   };
 
   return {
@@ -136,5 +154,6 @@ export default function useFormularioCurso({ curso = {}, modo = "crear" }) {
     agregarTema,
     eliminarTema,
     manejarCambioVideo,
+    manejarCambioPDFs,
   };
 }

@@ -32,6 +32,7 @@ export default function FormularioCurso({
     agregarTema,
     eliminarTema,
     manejarCambioVideo,
+    manejarCambioPDFs
   } = useFormularioCurso({ curso, modo });
 
   const { Modal, openModal } = useModalMensaje();
@@ -53,15 +54,23 @@ export default function FormularioCurso({
     try {
       const token = localStorage.getItem("token");
       const datos = { ...formulario };
+
+      // Limpiar contenido vacío
       datos.contenido = datos.contenido.filter((tema) => tema.trim() !== "");
+
+      // Agregar pdfs explícitamente (importante!)
+      datos.pdfs = formulario.pdfs || [];
+
+      // Normalizar precios
       const normalizarPrecio = (valor) =>
         typeof valor === "string"
           ? parseFloat(valor.replace(",", "."))
           : parseFloat(valor);
-      
+
       datos.precioAr = normalizarPrecio(formulario.precioAr);
       datos.precioUsd = normalizarPrecio(formulario.precioUsd);
-      
+
+      // Eliminar imagen si no tiene URL
       if (!datos.imagen?.url) delete datos.imagen;
 
       if (formulario.tipo === "grabado") {
@@ -69,10 +78,11 @@ export default function FormularioCurso({
           modo === "crear"
             ? await crearCurso(datos, token)
             : await editarCurso(curso._id, datos, token);
+
         onGuardar({ ...res, tipo: "grabado" });
+
         openModal({
-          titulo:
-            modo === "crear" ? "✅ Curso grabado creado" : "✏️ Curso editado",
+          titulo: modo === "crear" ? "✅ Curso grabado creado" : "✏️ Curso editado",
           subtitulo:
             modo === "crear"
               ? "Tu curso ya está disponible"
@@ -80,15 +90,17 @@ export default function FormularioCurso({
           redirectTo: "/admin",
           onCloseExtra: onCancelar,
         });
+
       } else if (formulario.tipo === "vivo") {
         const res =
           modo === "crear"
             ? await crearClase(datos)
             : await editarClase(curso._id, datos);
+
         onGuardar({ ...res, tipo: "vivo" });
+
         openModal({
-          titulo:
-            modo === "crear" ? "✅ Clase en vivo creada" : "✏️ Clase editada",
+          titulo: modo === "crear" ? "✅ Clase en vivo creada" : "✏️ Clase editada",
           subtitulo:
             modo === "crear"
               ? "Ya aparece en el panel"
@@ -97,6 +109,7 @@ export default function FormularioCurso({
           onCloseExtra: onCancelar,
         });
       }
+
     } catch (error) {
       console.error("❌ Error al guardar:", error);
       openModal({
@@ -106,6 +119,7 @@ export default function FormularioCurso({
           "Revisá los campos e intentá de nuevo",
       });
     }
+
   };
 
   return (
@@ -199,6 +213,7 @@ export default function FormularioCurso({
             errores={errores}
             onChangeDuracion={manejarCambio}
             onChangeVideo={manejarCambioVideo}
+            onChangePDFs={manejarCambioPDFs}
           />
         )}
 
