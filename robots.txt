@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marisarodriguezterapiasholisticas.com/sitemap.xml
