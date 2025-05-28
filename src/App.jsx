@@ -33,6 +33,7 @@ import PagoPendientePage from "./pages/PagoPendientePage";
 import PagoFallidoPage from "./pages/PagoFallidoPage";
 import CursoCompradoDetallePage from "./pages/CursoCompradoDetallePage";
 import About from "./pages/AboutPage";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 function App() {
   console.log("🔥 VITE_API_URL:", import.meta.env.VITE_API_URL); 
@@ -71,6 +72,8 @@ function App() {
               <Route path="/pago-exitoso" element={<PagoExitosoPage />} />
               <Route path="/pago-pendiente" element={<PagoPendientePage />} />
               <Route path="/pago-fallido" element={<PagoFallidoPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+
 
               {/* 🛒 Solo para usuarios logueados */}
               <Route path="/carrito" element={<CarritoPage />} />
