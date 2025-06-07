@@ -4,6 +4,7 @@ import { obtenerClasePorId } from "../services/clasesVivoService";
 import "../assets/styles/pages/ClaseVivoDetallePage.css";
 import { useCart } from "../context/CartContext";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 export default function ClaseVivoDetallePage() {
   const { id } = useParams();
@@ -56,91 +57,110 @@ export default function ClaseVivoDetallePage() {
   const horario = `${fechaInfo.horario} h (Argentina)`;
 
   return (
-    <div className="clase-detalle-container">
-      <section className="detalle-header">
-        <h1>{clase.titulo}</h1>
-      </section>
+    <>
+      {clase && (
+        <Helmet>
+          <title>{clase.titulo} | Clase en vivo - Marisa Rodríguez</title>
+          <meta
+            name="description"
+            content={`Participá en la clase en vivo "${clase.titulo}" con Marisa Rodríguez. Una experiencia transformadora desde tu casa.`}
+          />
+          <link
+            rel="canonical"
+            href={`https://marisarodriguezterapiasholisticas.com/claseDetalle/${id}`}
+          />
+        </Helmet>
+      )}
 
-      <section className="detalle-info">
-        <div>
-          <span className="badge-vivo">🟣 En Vivo</span>
-          <p className="descripcion">{clase.descripcion}</p>
+      <div className="clase-detalle-container">
+        <section className="detalle-header">
+          <h1>{clase.titulo}</h1>
+        </section>
 
-          {/* 🗓️ Bloque de fecha formateada */}
-          <p className="detalle-fecha">📅 {clasesText}</p>
-          <p>🗓️ Inicio: {inicio}</p>
-          <p>⏰ Horario: {horario}</p>
+        <section className="detalle-info">
+          <div>
+            <span className="badge-vivo">🟣 En Vivo</span>
+            <p className="descripcion">{clase.descripcion}</p>
 
-          <p>👥 Cupos disponibles: 30</p>
+            {/* 🗓️ Bloque de fecha formateada */}
+            <p className="detalle-fecha">📅 {clasesText}</p>
+            <p>🗓️ Inicio: {inicio}</p>
+            <p>⏰ Horario: {horario}</p>
 
-          {/* ✅ Contenido */}
-          {clase.contenido?.length > 0 && (
+            <p>👥 Cupos disponibles: 30</p>
+
+            {/* ✅ Contenido */}
+            {clase.contenido?.length > 0 && (
+              <div className="detalle-beneficios">
+                <h3>✨ ¿Qué vas a aprender?</h3>
+                <ul>
+                  {clase.contenido.map((tema, i) => (
+                    <li key={i}>✔ {tema}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* ✅ Beneficios extra */}
             <div className="detalle-beneficios">
-              <h3>✨ ¿Qué vas a aprender?</h3>
+              <h3>✨ ¿Qué incluye esta clase?</h3>
               <ul>
-                {clase.contenido.map((tema, i) => (
-                  <li key={i}>✔ {tema}</li>
-                ))}
+                <li>✔️ Clase en vivo vía Google Meet</li>
+                <li>✔️ Acceso a grupo exclusivo de WhatsApp</li>
+                <li>✔️ Material complementario después del encuentro</li>
+                <li>✔️ Espacio para consultas y comunidad</li>
+                <li>✔️ Entrega de la grabación de la clase en vivo</li>
               </ul>
             </div>
+          </div>
+
+          {clase.imagen && (
+            <div className="curso-imagen">
+              <img
+                src={clase.imagen.url}
+                alt={`Imagen del curso ${clase.titulo}`}
+              />
+            </div>
           )}
+        </section>
 
-          {/* ✅ Beneficios extra */}
-          <div className="detalle-beneficios">
-            <h3>✨ ¿Qué incluye esta clase?</h3>
-            <ul>
-              <li>✔️ Clase en vivo vía Google Meet</li>
-              <li>✔️ Acceso a grupo exclusivo de WhatsApp</li>
-              <li>✔️ Material complementario después del encuentro</li>
-              <li>✔️ Espacio para consultas y comunidad</li>
-              <li>✔️ Entrega de la grabación de la clase en vivo</li>
-            </ul>
+        <div className="buttonsClaseDetalle">
+          {/* Precio y botones */}
+          <div className="curso-acciones">
+            <p className="precio">
+              💸 Precio:{" "}
+              {clase.precioAr
+                ? `$${clase.precioAr.toLocaleString("es-AR")} ARS`
+                : "Consultar"}{" "}
+              /{" "}
+              {clase.precioUsd
+                ? `USD ${clase.precioUsd.toLocaleString("en-US")}`
+                : "Consultar"}
+            </p>
+
+            <button
+              className="boton-agregar-carrito"
+              onClick={() => agregarAlCarrito(clase)}
+            >
+              Agregar al Carrito
+            </button>
+
+            <a
+              href={`https://wa.me/5491124596372?text=${encodeURIComponent(
+                `Hola Marisa, estoy interesad@ en la clase en vivo: "${clase.titulo}". ¿Podrías contarme más detalles?`
+              )}`}
+              className="boton-consultar-whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consultar por WhatsApp
+            </a>
           </div>
         </div>
-
-        {clase.imagen && (
-          <div className="curso-imagen">
-            <img src={clase.imagen.url} alt={`Imagen del curso ${clase.titulo}`} />
-          </div>
-        )}
-      </section>
-
-      <div className="buttonsClaseDetalle">
-        {/* Precio y botones */}
-        <div className="curso-acciones">
-          <p className="precio">
-            💸 Precio:{" "}
-            {clase.precioAr
-              ? `$${clase.precioAr.toLocaleString("es-AR")} ARS`
-              : "Consultar"}{" "}
-            /{" "}
-            {clase.precioUsd
-              ? `USD ${clase.precioUsd.toLocaleString("en-US")}`
-              : "Consultar"}
-          </p>
-
-          <button
-            className="boton-agregar-carrito"
-            onClick={() => agregarAlCarrito(clase)}
-          >
-            Agregar al Carrito
-          </button>
-
-          <a
-            href={`https://wa.me/5491124596372?text=${encodeURIComponent(
-              `Hola Marisa, estoy interesad@ en la clase en vivo: "${clase.titulo}". ¿Podrías contarme más detalles?`
-            )}`}
-            className="boton-consultar-whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Consultar por WhatsApp
-          </a>
-        </div>
+        <Link to="/clases-en-vivo" className="volver-link">
+          ← Volver a clases en vivo
+        </Link>
       </div>
-      <Link to="/clases-en-vivo" className="volver-link">
-        ← Volver a clases en vivo
-      </Link>
-    </div>
+    </>
   );
 }
