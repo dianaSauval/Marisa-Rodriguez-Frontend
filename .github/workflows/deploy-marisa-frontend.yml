@@ -1,0 +1,20 @@
+name: Deploy Marisa Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ejecutar deploy en VPS por SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.MARISA_HOST }}
+          username: ${{ secrets.MARISA_USERNAME }}
+          key: ${{ secrets.MARISA_SSH_KEY }}
+          port: ${{ secrets.MARISA_PORT }}
+          script: /root/deploy-marisa.sh
