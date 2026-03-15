@@ -35,9 +35,9 @@ function Header() {
   return (
     <header className="header">
       {/* Logo */}
-      <div className="header__logo">
+      <Link to="/" className="header__logo">
         <img src={logo} alt="Marisa Rodríguez" />
-      </div>
+      </Link>
 
       {/* Menú Hamburguesa (mobile) */}
       <div className="header__menu-icon" onClick={toggleMenu}>
@@ -69,10 +69,7 @@ function Header() {
             Cerrar sesión
           </button>
         ) : (
-          <button
-            className="btn-sesion"
-            onClick={() => navigate("/login")}
-          >
+          <button className="btn-sesion" onClick={() => navigate("/login")}>
             Iniciar sesión
           </button>
         )}

@@ -73,6 +73,22 @@
     font-size: 0.85rem;
     color: var(--color-texto-secundario);
   }
+
+ .footer-credit {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.footer-credit a {
+  color: var(--color-acento);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-credit a:hover {
+  text-decoration: underline;
+}
   
   /* Responsive */
   @media (max-width: 768px) {
