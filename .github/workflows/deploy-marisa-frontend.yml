@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, flor]
+    runs-on: [self-hosted, marisa-frontend]
 
     steps:
       - name: Ejecutar deploy completo de Marisa
