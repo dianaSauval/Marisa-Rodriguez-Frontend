@@ -9,15 +9,44 @@ import { useAuth } from "../../context/AuthContext";
 
 function Header() {
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const [animando, setAnimando] = useState(false);
+  const [animando] = useState(false);
+
   const { carrito } = useCart();
   const { usuario, logout } = useAuth();
   const navigate = useNavigate();
 
-  const toggleMenu = () => setMenuAbierto(!menuAbierto);
+  const toggleMenu = () => {
+    setMenuAbierto((estadoActual) => !estadoActual);
+  };
+
+  const cerrarMenu = () => {
+    setMenuAbierto(false);
+  };
+
+  const subirAlInicio = (smooth = false) => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: smooth ? "smooth" : "instant",
+    });
+  };
+
+  const irAlInicio = () => {
+    cerrarMenu();
+    subirAlInicio(true);
+  };
+
   const cerrarSesion = () => {
     logout();
+    cerrarMenu();
     navigate("/");
+    subirAlInicio();
+  };
+
+  const irALogin = () => {
+    cerrarMenu();
+    navigate("/login");
+    subirAlInicio();
   };
 
   const enlaces = [
@@ -32,50 +61,79 @@ function Header() {
       : []),
   ];
 
+  const manejarClickEnlace = (href) => {
+    cerrarMenu();
+
+    // Necesario cuando ya estamos en Inicio y volvemos a pulsar Inicio.
+    if (href === "/") {
+      subirAlInicio(true);
+    }
+  };
+
   return (
     <header className="header">
       {/* Logo */}
-      <Link to="/" className="header__logo">
+      <Link to="/" className="header__logo" onClick={irAlInicio}>
         <img src={logo} alt="Marisa Rodríguez" />
       </Link>
 
-      {/* Menú Hamburguesa (mobile) */}
-      <div className="header__menu-icon" onClick={toggleMenu}>
+      {/* Menú hamburguesa */}
+      <button
+        type="button"
+        className="header__menu-icon"
+        onClick={toggleMenu}
+        aria-label={menuAbierto ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={menuAbierto}
+      >
         {menuAbierto ? <FaTimes /> : <FaBars />}
-      </div>
+      </button>
 
-      {/* Navegación - desktop */}
+      {/* Navegación desktop */}
       <nav className="header__nav">
         {enlaces.map((link) => (
-          <Link key={link.href} to={link.href}>
+          <Link
+            key={link.href}
+            to={link.href}
+            onClick={() => manejarClickEnlace(link.href)}
+          >
             {link.label}
           </Link>
         ))}
       </nav>
 
-      {/* Acciones a la derecha */}
+      {/* Acciones desktop */}
       <div className="header__actions">
-        <Link to="/carrito" className="carrito-link" title="Ver carrito">
+        <Link
+          to="/carrito"
+          className="carrito-link"
+          title="Ver carrito"
+          onClick={cerrarMenu}
+        >
           <FaShoppingCart
             className={`carrito-icono ${animando ? "animado" : ""}`}
           />
+
           {carrito.length > 0 && (
             <span className="carrito-contador">{carrito.length}</span>
           )}
         </Link>
 
         {usuario ? (
-          <button className="btn-sesion cerrar" onClick={cerrarSesion}>
+          <button
+            type="button"
+            className="btn-sesion cerrar"
+            onClick={cerrarSesion}
+          >
             Cerrar sesión
           </button>
         ) : (
-          <button className="btn-sesion" onClick={() => navigate("/login")}>
+          <button type="button" className="btn-sesion" onClick={irALogin}>
             Iniciar sesión
           </button>
         )}
       </div>
 
-      {/* Navegación Mobile */}
+      {/* Navegación mobile */}
       <AnimatePresence>
         {menuAbierto && (
           <motion.div
@@ -86,28 +144,39 @@ function Header() {
             transition={{ duration: 0.3 }}
           >
             {enlaces.map((link) => (
-              <Link key={link.href} to={link.href} onClick={toggleMenu}>
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={() => manejarClickEnlace(link.href)}
+              >
                 {link.label}
               </Link>
             ))}
+
             <div className="mobile-actions">
-              <Link to="/carrito" onClick={toggleMenu}>
-                <button className="carrito-btn">
-                  <FaShoppingCart />
-                </button>
+              <Link
+                to="/carrito"
+                className="carrito-link"
+                title="Ver carrito"
+                onClick={cerrarMenu}
+              >
+                <FaShoppingCart className="carrito-icono" />
+
+                {carrito.length > 0 && (
+                  <span className="carrito-contador">{carrito.length}</span>
+                )}
               </Link>
+
               {usuario ? (
-                <button className="btn-sesion cerrar" onClick={cerrarSesion}>
+                <button
+                  type="button"
+                  className="btn-sesion cerrar"
+                  onClick={cerrarSesion}
+                >
                   Cerrar sesión
                 </button>
               ) : (
-                <button
-                  className="btn-sesion"
-                  onClick={() => {
-                    toggleMenu();
-                    navigate("/login");
-                  }}
-                >
+                <button type="button" className="btn-sesion" onClick={irALogin}>
                   Iniciar sesión
                 </button>
               )}
